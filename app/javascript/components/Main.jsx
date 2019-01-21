@@ -8,27 +8,30 @@ class Main extends React.Component {
     super()
 
     this.state = {
-      started: false
+      started: false,
+      finished: false
     }
   }
 
   startDraft = () => {
     this.setState({
-      started: true
+      started: true,
+      finished: false
     })
   }
 
   newDraft = () => {
     this.setState({
-      started: false
+      started: false,
+      finished: false
     })
   }
 
   render () {
     return (
       <React.Fragment>
-        <Header started={this.state.started} onNew={this.newDraft} />
-        <Body started={this.state.started} onStart={this.startDraft} />
+        <Header started={this.state.started} finished={this.state.finished} onNew={this.newDraft} />
+        <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
       </React.Fragment>
     );
   }

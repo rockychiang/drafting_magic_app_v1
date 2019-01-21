@@ -8,7 +8,6 @@ class Body extends React.Component {
     super()
 
     this.state = {
-      ongoing: false,
       block: "grn",
       format: "draft"
     }
@@ -22,6 +21,7 @@ class Body extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    this.props.onStart()
 
     const data = {
       draft: {
