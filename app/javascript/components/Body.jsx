@@ -22,6 +22,15 @@ class Body extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+
+    const data = {
+      draft: {
+        block: this.state.block,
+        format: this.state.format
+      }
+    }
+
+    console.log(data)
   }
 
   render () {
