@@ -32,7 +32,6 @@ class Body extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.onStart()
 
     const data = {
       draft: {
@@ -47,19 +46,27 @@ class Body extends React.Component {
       data: data,
       success: (packs) => {
         this.setState({ packs: packs })
+        this.props.onStart()
         console.log(this.state.packs)
       }
     })
   }
 
   render () {
-    return (
-      <React.Fragment>
+    let form
+    if (!this.props.started) {
+      form = (
         <form onSubmit={this.handleSubmit}>
           <Block onChange={this.handleChange} />
           <Format onChecked={this.handleChange} />
           <input type="submit" value="Start" />
         </form>
+      )
+    }
+    
+    return (
+      <React.Fragment>
+        {form}
       </React.Fragment>
     );
   }
