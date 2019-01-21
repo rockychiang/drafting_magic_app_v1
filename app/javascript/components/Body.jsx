@@ -30,7 +30,15 @@ class Body extends React.Component {
       }
     }
 
-    console.log(data)
+    $.ajax({
+      type: "POST",
+      url: "/api/v1/drafts.json",
+      data: data,
+      success: (packs) => {
+        this.setState({ packs: packs })
+        console.log(this.state.packs)
+      }
+    })
   }
 
   render () {
