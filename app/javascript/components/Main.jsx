@@ -4,11 +4,27 @@ import Header from "./Header.jsx"
 import Body from "./Body.jsx"
 
 class Main extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      started: false
+    }
+  }
+
+  startDraft = () => {
+
+  }
+
+  newDraft = () => {
+
+  }
+
   render () {
     return (
       <React.Fragment>
-        <Header />
-        <Body />
+        <Header started={this.state.started} />
+        <Body started={this.state.started} />
       </React.Fragment>
     );
   }
