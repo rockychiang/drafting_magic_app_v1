@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+cards = MTG::Card.where(set: 'grn').all
+
+grn = Block.new
+grn.name = cards.first.set_name
+grn.code = cards.first.set
+grn.save
+
+cards.each do |card|
+  c = grn.cards.new
+  c.name = card.name
+  c.rarity = card.rarity
+  c.cmc = card.cmc
+  c.colors = card.color_identity
+  c.types = card.types
+  c.imgurl = card.image_url
+  c.save
+end
