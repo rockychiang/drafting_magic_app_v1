@@ -14,12 +14,22 @@ class Body extends React.Component {
     }
   }
 
+  handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    this.setState({ [name]: value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   render () {
     return (
       <React.Fragment>
         <form onSubmit={this.handleSubmit}>
-          <Block />
-          <Format />
+          <Block onChange={this.handleChange} />
+          <Format onChecked={this.handleChange} />
           <input type="submit" value="Start" />
         </form>
       </React.Fragment>
