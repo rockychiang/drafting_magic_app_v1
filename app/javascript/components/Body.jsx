@@ -9,7 +9,18 @@ class Body extends React.Component {
 
     this.state = {
       block: "grn",
-      format: "draft"
+      format: "draft",
+      packs: [],
+      main: [],
+      side: [],
+      bot1: [],
+      bot2: [],
+      bot3: [],
+      bot4: [],
+      bot5: [],
+      bot6: [],
+      bot7: [],
+      pick: 1
     }
   }
 
