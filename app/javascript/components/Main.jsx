@@ -13,18 +13,22 @@ class Main extends React.Component {
   }
 
   startDraft = () => {
-
+    this.setState({
+      started: true
+    })
   }
 
   newDraft = () => {
-
+    this.setState({
+      started: false
+    })
   }
 
   render () {
     return (
       <React.Fragment>
-        <Header started={this.state.started} />
-        <Body started={this.state.started} />
+        <Header started={this.state.started} onNew={this.newDraft} />
+        <Body started={this.state.started} onStart={this.startDraft} />
       </React.Fragment>
     );
   }

@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <h1>Drafting Magic</h1>
-        <button>New Sim</button>
+        <button onClick={this.props.onNew}>New Draft</button>
       </React.Fragment>
     );
   }
