@@ -7,10 +7,7 @@ class Body extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      block: "grn",
-      format: "draft",
-      packs: [],
+    this.initialDraftState = {
       main: [],
       side: [],
       bot1: [],
@@ -22,6 +19,12 @@ class Body extends React.Component {
       bot7: [],
       pick: 1
     }
+
+    this.state = Object.assign({
+      block: "grn",
+      format: "draft",
+      packs: []
+    }, this.initialDraftState)
   }
 
   handleChange = (e) => {
@@ -45,17 +48,19 @@ class Body extends React.Component {
       url: "/api/v1/drafts.json",
       data: data,
       success: (packs) => {
-        this.setState({ packs: packs })
+        this.setState(Object.assign({
+          packs: packs
+        }, this.initialDraftState))
         this.props.onStart()
-        console.log(this.state.packs)
+        console.log(this.state)
       }
     })
   }
 
   render () {
-    let form
+    let body
     if (!this.props.started) {
-      form = (
+      body = (
         <form onSubmit={this.handleSubmit}>
           <Block onChange={this.handleChange} />
           <Format onChecked={this.handleChange} />
@@ -63,10 +68,10 @@ class Body extends React.Component {
         </form>
       )
     }
-    
+
     return (
       <React.Fragment>
-        {form}
+        {body}
       </React.Fragment>
     );
   }
