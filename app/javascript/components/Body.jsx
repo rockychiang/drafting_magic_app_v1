@@ -59,7 +59,13 @@ class Body extends React.Component {
 
   render () {
     let body
-    if (!this.props.started) {
+    if (this.props.started) {
+      body = this.state.packs[0].map((card) => {
+        return (
+          <img src={card.imgurl} alt={card.name} />
+        )
+      })
+    } else {
       body = (
         <form onSubmit={this.handleSubmit}>
           <Block onChange={this.handleChange} />
