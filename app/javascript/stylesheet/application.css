@@ -12,3 +12,7 @@ header {
 img.card {
   width: 175px;
 }
+
+img.card:hover {
+  width: 223px;
+}
