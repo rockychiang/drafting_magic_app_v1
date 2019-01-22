@@ -46,7 +46,7 @@ class Body extends React.Component {
     if (this.props.started) {
       body = this.state.packs[0].map((card, i) => {
         return (
-          <img src={card.imgurl} alt={card.name} key={i}/>
+          <img className="card" src={card.imgurl} alt={card.name} key={i}/>
         )
       })
     } else {

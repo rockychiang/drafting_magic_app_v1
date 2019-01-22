@@ -1,0 +1,14 @@
+header {
+  text-align: center;
+}
+
+#btn-new {
+  float: right;
+  top: 35px;
+  right: 30px;
+  position: absolute;
+}
+
+img.card {
+  width: 175px;
+}
