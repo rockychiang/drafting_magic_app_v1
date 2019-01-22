@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Format from "./Format.jsx"
-import Block from "./Block.jsx"
+import Form from "./Form.jsx"
 
 class Body extends React.Component {
   constructor() {
@@ -33,46 +32,25 @@ class Body extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-
-    const data = {
-      draft: {
-        block: this.state.block,
-        format: this.state.format
-      }
-    }
-
-    $.ajax({
-      type: "POST",
-      url: "/api/v1/drafts.json",
-      data: data,
-      success: (packs) => {
-        this.setState(Object.assign({
-          packs: packs
-        }, this.initialDraftState))
-        this.props.onStart()
-        console.log(this.state)
-      }
-    })
+  updatePacks = (packs) => {
+    this.setState(Object.assign({
+      packs: packs
+    }, this.initialDraftState))
+    this.props.onStart()
+    console.log(this.state)
   }
 
   render () {
     let body
+
     if (this.props.started) {
-      body = this.state.packs[0].map((card) => {
+      body = this.state.packs[0].map((card, i) => {
         return (
-          <img src={card.imgurl} alt={card.name} />
+          <img src={card.imgurl} alt={card.name} key={i}/>
         )
       })
     } else {
-      body = (
-        <form onSubmit={this.handleSubmit}>
-          <Block onChange={this.handleChange} />
-          <Format onChecked={this.handleChange} />
-          <input type="submit" value="Start" />
-        </form>
-      )
+      body = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
     }
 
     return (
