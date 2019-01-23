@@ -57,7 +57,7 @@ class Body extends React.Component {
     return (
       <React.Fragment>
         {body}
-        <Deck />
+        <Deck cards={this.state.packs[0]} />
       </React.Fragment>
     );
   }
