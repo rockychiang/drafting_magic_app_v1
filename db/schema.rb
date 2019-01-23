@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_01_21_104532) do
     t.string "name"
     t.integer "block_id"
     t.string "rarity"
+    t.string "layout"
     t.integer "cmc"
     t.text "colors"
     t.text "types"

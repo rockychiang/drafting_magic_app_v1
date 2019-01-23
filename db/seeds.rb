@@ -9,6 +9,7 @@ cards.each do |card|
   c = grn.cards.new
   c.name = card.name
   c.rarity = card.rarity
+  c.layout = card.layout
   c.cmc = card.cmc
   c.colors = card.color_identity
   c.types = card.types

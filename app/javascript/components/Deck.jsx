@@ -17,12 +17,14 @@ class Deck extends React.Component {
       let four = this.props.cards.filter(card => card.cmc === 4)
       let five = this.props.cards.filter(card => card.cmc === 5)
       let six = this.props.cards.filter(card => card.cmc > 5)
+      // let land = this.props.cards.filter(card => card.types > 5)
       onebody = <Stack cards={one} />
       twobody = <Stack cards={two}  />
       threebody = <Stack cards={three} />
       fourbody = <Stack cards={four} />
       fivebody = <Stack cards={five} />
       sixbody = <Stack cards={six} />
+      // landbody = <Stack cards={land} />
     }
 
     return (
@@ -34,6 +36,7 @@ class Deck extends React.Component {
           {fourbody}
           {fivebody}
           {sixbody}
+          // {landbody}
         </div>
       </React.Fragment>
     );
