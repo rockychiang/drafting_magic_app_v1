@@ -46,3 +46,15 @@ img.deck {
 img.deck:hover {
   z-index: 999;
 }
+
+.count {
+  text-align: center;
+  margin: 0;
+}
+
+.stacks {
+  display: inline-block;
+  margin-right: 5px;
+  position: relative;
+  width: 175px;
+}
