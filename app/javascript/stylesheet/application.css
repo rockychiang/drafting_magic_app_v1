@@ -38,3 +38,11 @@ img.card:hover {
   background-color: white;
   overflow-x: scroll;
 }
+
+img.deck {
+  position: absolute;
+}
+
+img.deck:hover {
+  z-index: 999;
+}
