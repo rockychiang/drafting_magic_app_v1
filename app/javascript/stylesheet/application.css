@@ -1,3 +1,14 @@
+html {
+ height: 100%;
+}
+
+ body {
+   width: 100%;
+   min-height: 100%;
+   position: relative;
+   padding-bottom: 250px;
+ }
+
 header {
   text-align: center;
 }
@@ -15,4 +26,13 @@ img.card {
 
 img.card:hover {
   width: 223px;
+}
+
+#deck {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 250px;
+  width: 100%;
+  background-color: black;
 }

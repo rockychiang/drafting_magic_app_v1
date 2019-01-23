@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Form from "./Form.jsx"
+import Deck from "./Deck.jsx"
 
 class Body extends React.Component {
   constructor() {
@@ -56,6 +57,7 @@ class Body extends React.Component {
     return (
       <React.Fragment>
         {body}
+        <Deck />
       </React.Fragment>
     );
   }
