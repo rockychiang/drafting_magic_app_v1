@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Title from "./Title.jsx"
 import CardPool from "./CardPool.jsx"
+import Form from "./Form.jsx"
 
 class App extends React.Component {
   constructor() {
@@ -43,12 +44,31 @@ class App extends React.Component {
     })
   }
 
+  handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    this.setState({ [name]: value })
+  }
+
+  updatePacks = (packs) => {
+    this.setState(Object.assign({ packs: packs }, this.initialDraftState))
+    this.startDraft()
+    console.log(this.state)
+  }
+
   render () {
+    let cardpool
+    if (this.state.started) {
+      cardpool = <CardPool packs={this.state.packs[0]} />
+    } else {
+      cardpool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
+    }
+
     return (
       <div id="app">
         <div id="top">
           <Title started={this.state.started} onNew={this.newDraft} />
-          <CardPool started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
+          {cardpool}
         </div>
 
         <div id="bottom">
