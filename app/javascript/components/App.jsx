@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Header from "./Header.jsx"
+import Title from "./Title.jsx"
 import Body from "./Body.jsx"
 
 class App extends React.Component {
@@ -47,8 +47,8 @@ class App extends React.Component {
     return (
       <div id="app">
         <div id="top">
-          <Header started={this.state.started} finished={this.state.finished} onNew={this.newDraft} />
-          // <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
+          <Title started={this.state.started} onNew={this.newDraft} />
+          <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
         </div>
 
         <div id="bottom">

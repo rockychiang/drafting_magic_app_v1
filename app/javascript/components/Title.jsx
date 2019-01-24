@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-class Header extends React.Component {
+class Title extends React.Component {
   render () {
     let newButton
     if (this.props.started) {
@@ -17,4 +17,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+export default Title
