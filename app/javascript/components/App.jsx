@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Header from "./Header.jsx"
 import Body from "./Body.jsx"
 
-class Main extends React.Component {
+class App extends React.Component {
   constructor() {
     super()
 
@@ -37,4 +37,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main
+export default App
