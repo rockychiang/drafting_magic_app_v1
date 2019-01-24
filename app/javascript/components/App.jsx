@@ -45,13 +45,32 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="app">
-        <div className="top">
+      <div id="app">
+        <div id="top">
           <Header started={this.state.started} finished={this.state.finished} onNew={this.newDraft} />
-          <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
+          // <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
         </div>
-        <div className="bottom">
 
+        <div id="bottom">
+          <div id="deck-pool">
+            <div className="info-bar">
+              <span>Lands:    Creatures:     Others:     Total: </span>
+            </div>
+
+            <div id="deck-stacks">
+
+            </div>
+          </div>
+
+          <div id="side-pool">
+            <div className="info-bar">
+              <span>Sideboard: </span>
+            </div>
+
+            <div id="pool-stacks">
+
+            </div>
+          </div>
         </div>
       </div>
     );
