@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 class Stack extends React.Component {
   render () {
-    let stack = this.props.cards.map((card, i) => {
+    let stack = this.props.cards.sort((a, b) => {return a.name - b.name}).map((card, i) => {
       let style = { top: 20+i*27 + 'px' }
 
       return (
