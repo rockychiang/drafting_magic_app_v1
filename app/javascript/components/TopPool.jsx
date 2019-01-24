@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 
-class CardPool extends React.Component {
+class TopPool extends React.Component {
   render () {
     let pool = this.props.packs.map((card, i) => {
       return (
@@ -19,4 +19,4 @@ class CardPool extends React.Component {
   }
 }
 
-export default CardPool
+export default TopPool

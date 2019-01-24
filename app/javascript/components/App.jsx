@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Title from "./Title.jsx"
-import CardPool from "./CardPool.jsx"
+import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 
 class App extends React.Component {
@@ -59,7 +59,11 @@ class App extends React.Component {
   render () {
     let cardpool
     if (this.state.started) {
-      cardpool = <CardPool packs={this.state.packs[0]} />
+      if (this.state.format === "draft") {
+        cardpool = <TopPool packs={this.state.packs[0]} />
+      } else {
+        cardpool = <TopPool packs={this.state.packs} />
+      }
     } else {
       cardpool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
     }
