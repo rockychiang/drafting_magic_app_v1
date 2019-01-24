@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 
-class Body extends React.Component {
+class CardPool extends React.Component {
   constructor() {
     super()
 
@@ -65,4 +65,4 @@ class Body extends React.Component {
   }
 }
 
-export default Body
+export default CardPool

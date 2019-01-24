@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Title from "./Title.jsx"
-import Body from "./Body.jsx"
+import CardPool from "./CardPool.jsx"
 
 class App extends React.Component {
   constructor() {
@@ -48,7 +48,7 @@ class App extends React.Component {
       <div id="app">
         <div id="top">
           <Title started={this.state.started} onNew={this.newDraft} />
-          <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
+          <CardPool started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
         </div>
 
         <div id="bottom">
