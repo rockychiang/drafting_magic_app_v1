@@ -29,14 +29,15 @@ img.card:hover {
 }
 
 #deck {
-  position: fixed;
+  background-color: white;
+  border-top: double;
   bottom: 0;
+  display: flex;
+  height: 250px;
+  position: fixed;
   left: 0;
   right: 0;
-  height: 250px;
-  border-top: double;
-  background-color: white;
-  overflow-x: scroll;
+  overflow: scroll;
 }
 
 img.deck {
@@ -56,5 +57,5 @@ img.deck:hover {
   display: inline-block;
   margin-right: 5px;
   position: relative;
-  width: 175px;
+  min-width: 175px;
 }
