@@ -30,14 +30,18 @@ class Deck extends React.Component {
 
     return (
       <React.Fragment>
-        <div id="deck">
-          {onebody}
-          {twobody}
-          {threebody}
-          {fourbody}
-          {fivebody}
-          {sixbody}
-          {landbody}
+        <div id="deck-pool">
+          <div id="info-bar">
+          </div>
+          <div id="stacks">
+            {onebody}
+            {twobody}
+            {threebody}
+            {fourbody}
+            {fivebody}
+            {sixbody}
+            {landbody}
+          </div>
         </div>
       </React.Fragment>
     );

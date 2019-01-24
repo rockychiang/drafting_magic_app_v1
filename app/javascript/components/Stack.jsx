@@ -13,7 +13,7 @@ class Stack extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="stacks">
+        <div className="stack">
           <p className="count">{this.props.cards.length}</p><br></br>
           {stack}
         </div>

@@ -6,7 +6,7 @@ html {
    width: 100%;
    min-height: 100%;
    position: relative;
-   padding-bottom: 250px;
+   padding-bottom: 267px;
  }
 
 header {
@@ -28,16 +28,41 @@ img.card:hover {
   width: 223px;
 }
 
-#deck {
+#deck-pool {
   background-color: white;
-  border-top: double;
   bottom: 0;
-  display: flex;
-  height: 250px;
+  height: 267px;
   position: fixed;
   left: 0;
   right: 0;
+}
+
+#info-bar {
+  background-color: lightgrey;
+  border-bottom: 2px outset;
+  border-top: 2px outset;
+  height: 17px;
+  width: 100%;
+}
+
+#stacks {
+  height: 92%;
+  width: 100%;
+  display: flex;
   overflow: scroll;
+}
+
+.count {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.stack {
+  display: inline-block;
+  margin-right: 5px;
+  position: relative;
+  min-width: 175px;
 }
 
 img.deck {
@@ -46,16 +71,4 @@ img.deck {
 
 img.deck:hover {
   z-index: 999;
-}
-
-.count {
-  text-align: center;
-  margin: 0;
-}
-
-.stacks {
-  display: inline-block;
-  margin-right: 5px;
-  position: relative;
-  min-width: 175px;
 }
