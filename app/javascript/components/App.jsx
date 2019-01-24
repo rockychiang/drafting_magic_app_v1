@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import Title from "./Title.jsx"
 import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
+import Deck from "./Deck.jsx"
+import SideBoard from "./SideBoard.jsx"
 
 class App extends React.Component {
   constructor() {
@@ -57,12 +59,15 @@ class App extends React.Component {
   }
 
   render () {
-    let cardpool
+    let cardpool, deckpool, sidepool;
     if (this.state.started) {
       if (this.state.format === "draft") {
         cardpool = <TopPool packs={this.state.packs[0]} />
+        deckpool = <Deck cards={this.state.packs[0]} />
+        sidepool = <SideBoard cards={this.state.packs[0]} />
       } else {
         cardpool = <TopPool packs={this.state.packs} />
+        deckpool = <Deck cards={this.state.packs} />
       }
     } else {
       cardpool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
@@ -76,25 +81,8 @@ class App extends React.Component {
         </div>
 
         <div id="bottom">
-          <div id="deck-pool">
-            <div className="info-bar">
-              <span>Lands:    Creatures:     Others:     Total: </span>
-            </div>
-
-            <div id="deck-stacks">
-
-            </div>
-          </div>
-
-          <div id="side-pool">
-            <div className="info-bar">
-              <span>Sideboard: </span>
-            </div>
-
-            <div id="pool-stacks">
-
-            </div>
-          </div>
+          {deckpool}
+          {sidepool}
         </div>
       </div>
     );

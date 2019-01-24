@@ -38,29 +38,18 @@ class Deck extends React.Component {
     }
 
     return (
-      <div className="bottom-pool">
-        <div id="deck-pool">
-          <div className="info-bar">
-            <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
-          </div>
-          <div id="deck-stacks">
-            {onebody}
-            {twobody}
-            {threebody}
-            {fourbody}
-            {fivebody}
-            {sixbody}
-            {landbody}
-          </div>
+      <div id="deck-pool">
+        <div className="info-bar">
+          <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
         </div>
-
-        <div id="side-pool">
-          <div className="info-bar">
-            <span>Sideboard: {total}</span>
-          </div>
-          <div id="pool-stacks">
-            {onebody}
-          </div>
+        <div id="deck-stacks">
+          {onebody}
+          {twobody}
+          {threebody}
+          {fourbody}
+          {fivebody}
+          {sixbody}
+          {landbody}
         </div>
       </div>
     );
