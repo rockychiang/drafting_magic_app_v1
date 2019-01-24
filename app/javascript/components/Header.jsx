@@ -9,12 +9,10 @@ class Header extends React.Component {
     }
 
     return (
-      <React.Fragment>
-        <header>
-          <h1>Drafting Magic</h1>
-          {newButton}
-        </header>
-      </React.Fragment>
+      <header>
+        <h1>Drafting Magic</h1>
+        {newButton}
+      </header>
     );
   }
 }

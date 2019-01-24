@@ -55,10 +55,12 @@ class Body extends React.Component {
     }
 
     return (
-      <React.Fragment>
-        {body}
+      <div className="body">
+        <div className="top-pool">
+          {body}
+        </div>
         <Deck cards={this.state.packs[0]} />
-      </React.Fragment>
+      </div>
     );
   }
 }

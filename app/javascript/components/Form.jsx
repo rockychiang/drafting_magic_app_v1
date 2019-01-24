@@ -26,13 +26,11 @@ class Form extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-          <Block onChange={this.props.handleChange} />
-          <Format onChecked={this.props.handleChange} />
-          <input type="submit" value="Start" />
-        </form>
-      </React.Fragment>
+      <form onSubmit={this.handleSubmit}>
+        <Block onChange={this.props.handleChange} />
+        <Format onChecked={this.props.handleChange} />
+        <input type="submit" value="Start" />
+      </form>
     );
   }
 }

@@ -38,7 +38,7 @@ class Deck extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <div className="bottom-pool">
         <div id="deck-pool">
           <div className="info-bar">
             <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
@@ -62,7 +62,7 @@ class Deck extends React.Component {
             {onebody}
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
