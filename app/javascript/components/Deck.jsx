@@ -11,7 +11,15 @@ class Deck extends React.Component {
     let fivebody
     let sixbody
     let landbody
+    let lands
+    let creatures
+    let total
+    let others
     if (this.props.cards) {
+      lands = this.props.cards.filter(card => card.types.includes("Land")).length
+      creatures = this.props.cards.filter(card => card.types.includes("Creature")).length
+      total = this.props.cards.length
+      others = total - lands - creatures
       let one = this.props.cards.filter(card => card.cmc < 2 && !card.types.includes("Land"))
       let two = this.props.cards.filter(card => card.cmc === 2)
       let three = this.props.cards.filter(card => card.cmc === 3)
@@ -32,6 +40,7 @@ class Deck extends React.Component {
       <React.Fragment>
         <div id="deck-pool">
           <div id="info-bar">
+            <text>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</text>
           </div>
           <div id="stacks">
             {onebody}
