@@ -7,10 +7,26 @@ class App extends React.Component {
   constructor() {
     super()
 
-    this.state = {
+    this.initialDraftState = {
+      main: [],
+      side: [],
+      bot1: [],
+      bot2: [],
+      bot3: [],
+      bot4: [],
+      bot5: [],
+      bot6: [],
+      bot7: [],
+      pick: 1
+    }
+
+    this.state = Object.assign({
+      block: "grn",
+      format: "draft",
+      packs: [],
       started: false,
       finished: false
-    }
+    }, this.initialDraftState)
   }
 
   startDraft = () => {
@@ -29,10 +45,15 @@ class App extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
-        <Header started={this.state.started} finished={this.state.finished} onNew={this.newDraft} />
-        <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
-      </React.Fragment>
+      <div className="app">
+        <div className="top">
+          <Header started={this.state.started} finished={this.state.finished} onNew={this.newDraft} />
+          <Body started={this.state.started} finished={this.state.finished} onStart={this.startDraft} />
+        </div>
+        <div className="bottom">
+
+        </div>
+      </div>
     );
   }
 }
