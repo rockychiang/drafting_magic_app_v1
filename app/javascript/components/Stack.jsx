@@ -7,7 +7,7 @@ class Stack extends React.Component {
       let style = { top: 20+i*27 + 'px' }
 
       return (
-        <img className="card deck" src={card.imgurl} alt={card.name} key={i} style={style} />
+        <img className="card deck" src={card.imgurl} alt={card.name} key={i} style={style} onClick={this.props.handleClick} />
       )
     })
 

@@ -22,13 +22,13 @@ class Deck extends React.Component {
           <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
         </div>
         <div id="deck-stacks">
-          <Stack cards={one} />
-          <Stack cards={two}  />
-          <Stack cards={three} />
-          <Stack cards={four} />
-          <Stack cards={five} />
-          <Stack cards={six} />
-          <Stack cards={land} />
+          <Stack cards={one} handleClick={this.props.handleClick} />
+          <Stack cards={two} handleClick={this.props.handleClick} />
+          <Stack cards={three} handleClick={this.props.handleClick} />
+          <Stack cards={four} handleClick={this.props.handleClick} />
+          <Stack cards={five} handleClick={this.props.handleClick} />
+          <Stack cards={six} handleClick={this.props.handleClick} />
+          <Stack cards={land} handleClick={this.props.handleClick} />
         </div>
       </div>
     );

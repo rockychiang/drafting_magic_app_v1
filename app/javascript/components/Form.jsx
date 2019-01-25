@@ -19,7 +19,7 @@ class Form extends React.Component {
       url: "/api/v1/drafts.json",
       data: data,
       success: (packs) => {
-        this.props.updatePacks(packs)
+        this.props.getPacks(packs)
       }
     })
   }

@@ -5,7 +5,7 @@ import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 import SideBoard from "./SideBoard.jsx"
-import addCardToDeck from "../utils/addCardToDeck.js"
+import takeCard from "../utils/takeCard.js"
 
 class App extends React.Component {
   constructor() {
@@ -52,38 +52,52 @@ class App extends React.Component {
     this.setState({ [name]: value })
   }
 
-  updatePacks = (packs) => {
+  getPacks = (packs) => {
     this.setState(Object.assign({ packs: packs }, this.initialDraftState))
     this.startDraft()
     console.log(this.state)
   }
 
-  handlePoolClick = (e) => {
-    let card
+  handleTopPoolClick = (e) => {
     if (this.state.format === "draft") {
-      card = addCardToDeck(e.target.alt, this.state.packs[0])
+      this.addCardToDeck(e.target.alt, this.state.packs[0])
     } else {
-      card = addCardToDeck(e.target.alt, this.state.packs)
+      this.addCardToDeck(e.target.alt, this.state.packs)
     }
-    this.setState( {
+  }
+
+  handleSidePoolClick = (e) => {
+    this.addCardToDeck(e.target.alt, this.state.side)
+  }
+
+  addCardToDeck = (cardName, pack) => {
+    let card = takeCard(cardName, pack)
+    this.setState({
       deck: this.state.deck.concat(card)
+    })
+  }
+
+  addCardToSide = (e) => {
+    let card = takeCard(e.target.alt, this.state.deck)
+    this.setState({
+      side: this.state.side.concat(card)
     })
   }
 
   render () {
     let pool, deck, sideboard, style;
     if (this.state.started) {
-      deck = <Deck cards={this.state.deck} style={style} />
       if (this.state.format === "draft") {
-        pool = <TopPool packs={this.state.packs[0]} handleClick={this.handlePoolClick} />
+        pool = <TopPool packs={this.state.packs[0]} handleClick={this.handleTopPoolClick} />
+        sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
         style = { width: 'calc(100% - 195px)' }
-        sideboard = <SideBoard cards={this.state.packs[0]} />
       } else {
-        pool = <TopPool packs={this.state.packs} handleClick={this.handlePoolClick} />
+        pool = <TopPool packs={this.state.packs} handleClick={this.handleTopPoolClick} />
         style = { width: '100%' }
       }
+      deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
     } else {
-      pool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
+      pool = <Form getPacks={this.getPacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
     }
 
     return (
