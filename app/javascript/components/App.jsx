@@ -22,6 +22,7 @@ class App extends React.Component {
     this.initialDraftState = {
       deck: [],
       side: [],
+      pool: [],
       bot1: [],
       bot2: [],
       bot3: [],
@@ -54,16 +55,24 @@ class App extends React.Component {
 
   getPacks = (packs) => {
     this.setState(Object.assign({ packs: packs }, this.initialDraftState))
+    if (this.state.format === "draft") {
+      this.setState({
+        pool: this.state.packs[0]
+      })
+    } else {
+      this.setState({
+        side: this.state.packs
+      })
+      this.setState({
+        pool: this.state.side
+      })
+    }
     this.startDraft()
     console.log(this.state)
   }
 
   handleTopPoolClick = (e) => {
-    if (this.state.format === "draft") {
-      this.addCardToDeck(e.target.alt, this.state.packs[0])
-    } else {
-      this.addCardToDeck(e.target.alt, this.state.packs)
-    }
+    this.addCardToDeck(e.target.alt, this.state.pool)
   }
 
   handleSidePoolClick = (e) => {
@@ -88,11 +97,11 @@ class App extends React.Component {
     let pool, deck, sideboard, style;
     if (this.state.started) {
       if (this.state.format === "draft") {
-        pool = <TopPool packs={this.state.packs[0]} handleClick={this.handleTopPoolClick} />
+        pool = <TopPool packs={this.state.pool} handleClick={this.handleTopPoolClick} />
         sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
         style = { width: 'calc(100% - 195px)' }
       } else {
-        pool = <TopPool packs={this.state.packs} handleClick={this.handleTopPoolClick} />
+        pool = <TopPool packs={this.state.pool} handleClick={this.handleTopPoolClick} />
         style = { width: '100%' }
       }
       deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
