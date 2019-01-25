@@ -5,6 +5,7 @@ import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 import SideBoard from "./SideBoard.jsx"
+import addCardToDeck from "../utils/addCardToDeck.js"
 
 class App extends React.Component {
   constructor() {
@@ -58,15 +59,12 @@ class App extends React.Component {
   }
 
   handlePoolClick = (e) => {
-    let pack
+    let card
     if (this.state.format === "draft") {
-      pack = this.state.packs[0]
+      card = addCardToDeck(e.target.alt, this.state.packs[0])
     } else {
-      pack = this.state.packs
+      card = addCardToDeck(e.target.alt, this.state.packs)
     }
-
-    let cardIndex = pack.findIndex((card) => {return card.name === e.target.alt})
-    let card = pack.splice(cardIndex, 1)
     this.setState( {
       deck: this.state.deck.concat(card)
     })
@@ -75,15 +73,14 @@ class App extends React.Component {
   render () {
     let pool, deck, sideboard, style;
     if (this.state.started) {
+      deck = <Deck cards={this.state.deck} style={style} />
       if (this.state.format === "draft") {
         pool = <TopPool packs={this.state.packs[0]} handleClick={this.handlePoolClick} />
         style = { width: 'calc(100% - 195px)' }
-        deck = <Deck cards={this.state.deck} style={style} />
         sideboard = <SideBoard cards={this.state.packs[0]} />
       } else {
         pool = <TopPool packs={this.state.packs} handleClick={this.handlePoolClick} />
         style = { width: '100%' }
-        deck = <Deck cards={this.state.deck} style={style} />
       }
     } else {
       pool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
