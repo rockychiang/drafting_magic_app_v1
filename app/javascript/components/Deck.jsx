@@ -17,7 +17,7 @@ class Deck extends React.Component {
     let others = total - lands - creatures
 
     return (
-      <div id="deck-pool">
+      <div id="deck-pool" style={this.props.style}>
         <div className="info-bar">
           <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
         </div>

@@ -12,12 +12,10 @@ class Stack extends React.Component {
     })
 
     return (
-      <React.Fragment>
-        <div className="stack">
-          <p className="count">{this.props.cards.length}</p><br></br>
-          {stack}
-        </div>
-      </React.Fragment>
+      <div className="stack">
+        <p className="count">{this.props.cards.length}</p>
+        {stack}
+      </div>
     );
   }
 }

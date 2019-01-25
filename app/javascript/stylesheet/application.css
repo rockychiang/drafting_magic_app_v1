@@ -40,7 +40,7 @@ header {
 }
 
 img.card {
-  width: 175px;
+  width: 223px;
 }
 
 img.card:hover {
@@ -63,7 +63,9 @@ img.card:hover {
 #deck-stacks {
   display: flex;
   height: calc(100% - 17px);
+  margin-right: 5px;
   overflow: scroll;
+  padding: 5px;
 }
 
 .count {
@@ -81,6 +83,7 @@ img.card:hover {
 
 img.deck {
   position: absolute;
+  width: 175px;
 }
 
 img.deck:hover {
@@ -89,13 +92,15 @@ img.deck:hover {
 
 #side-pool {
   height: 100%;
-  min-width: 180px;
+  min-width: 195px;
   position: absolute;
   right: 0;
 }
 
 #pool-stacks {
+  border-left: 5px outset darkgrey;
   display: flex;
   height: calc(100% - 17px);
   overflow: scroll;
+  padding: 5px;
 }

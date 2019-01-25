@@ -10,6 +10,14 @@ class App extends React.Component {
   constructor() {
     super()
 
+    this.initialState= {
+      block: "grn",
+      format: "draft",
+      packs: [],
+      started: false,
+      finished: false
+    }
+
     this.initialDraftState = {
       main: [],
       side: [],
@@ -23,13 +31,7 @@ class App extends React.Component {
       pick: 1
     }
 
-    this.state = Object.assign({
-      block: "grn",
-      format: "draft",
-      packs: [],
-      started: false,
-      finished: false
-    }, this.initialDraftState)
+    this.state = Object.assign(this.initialState, this.initialDraftState)
   }
 
   startDraft = () => {
@@ -40,10 +42,7 @@ class App extends React.Component {
   }
 
   newDraft = () => {
-    this.setState({
-      started: false,
-      finished: false
-    })
+    this.setState(this.initialState)
   }
 
   handleChange = (e) => {
@@ -59,30 +58,32 @@ class App extends React.Component {
   }
 
   render () {
-    let cardpool, deckpool, sidepool;
+    let pool, deck, sideboard, style;
     if (this.state.started) {
       if (this.state.format === "draft") {
-        cardpool = <TopPool packs={this.state.packs[0]} />
-        deckpool = <Deck cards={this.state.packs[0]} />
-        sidepool = <SideBoard cards={this.state.packs[0]} />
+        pool = <TopPool packs={this.state.packs[0]} />
+        style = { width: 'calc(100% - 195px)' }
+        deck = <Deck cards={this.state.packs[0]} style={style} />
+        sideboard = <SideBoard cards={this.state.packs[0]} />
       } else {
-        cardpool = <TopPool packs={this.state.packs} />
-        deckpool = <Deck cards={this.state.packs} />
+        pool = <TopPool packs={this.state.packs} />
+        style = { width: '100%' }
+        deck = <Deck cards={this.state.packs} style={style} />
       }
     } else {
-      cardpool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
+      pool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
     }
 
     return (
       <div id="app">
         <div id="top">
           <Title started={this.state.started} onNew={this.newDraft} />
-          {cardpool}
+          {pool}
         </div>
 
         <div id="bottom">
-          {deckpool}
-          {sidepool}
+          {deck}
+          {sideboard}
         </div>
       </div>
     );
