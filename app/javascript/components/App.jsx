@@ -19,7 +19,7 @@ class App extends React.Component {
     }
 
     this.initialDraftState = {
-      main: [],
+      deck: [],
       side: [],
       bot1: [],
       bot2: [],
@@ -57,18 +57,33 @@ class App extends React.Component {
     console.log(this.state)
   }
 
+  handlePoolClick = (e) => {
+    let pack
+    if (this.state.format === "draft") {
+      pack = this.state.packs[0]
+    } else {
+      pack = this.state.packs
+    }
+
+    let cardIndex = pack.findIndex((card) => {return card.name === e.target.alt})
+    let card = pack.splice(cardIndex, 1)
+    this.setState( {
+      deck: this.state.deck.concat(card)
+    })
+  }
+
   render () {
     let pool, deck, sideboard, style;
     if (this.state.started) {
       if (this.state.format === "draft") {
-        pool = <TopPool packs={this.state.packs[0]} />
+        pool = <TopPool packs={this.state.packs[0]} handleClick={this.handlePoolClick} />
         style = { width: 'calc(100% - 195px)' }
-        deck = <Deck cards={this.state.packs[0]} style={style} />
+        deck = <Deck cards={this.state.deck} style={style} />
         sideboard = <SideBoard cards={this.state.packs[0]} />
       } else {
-        pool = <TopPool packs={this.state.packs} />
+        pool = <TopPool packs={this.state.packs} handleClick={this.handlePoolClick} />
         style = { width: '100%' }
-        deck = <Deck cards={this.state.packs} style={style} />
+        deck = <Deck cards={this.state.deck} style={style} />
       }
     } else {
       pool = <Form updatePacks={this.updatePacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
