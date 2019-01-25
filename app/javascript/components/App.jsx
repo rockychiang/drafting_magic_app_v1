@@ -22,7 +22,6 @@ class App extends React.Component {
     this.initialDraftState = {
       deck: [],
       side: [],
-      pool: [],
       bot1: [],
       bot2: [],
       bot3: [],
@@ -55,16 +54,9 @@ class App extends React.Component {
 
   getPacks = (packs) => {
     this.setState(Object.assign({ packs: packs }, this.initialDraftState))
-    if (this.state.format === "draft") {
-      this.setState({
-        pool: this.state.packs[0]
-      })
-    } else {
+    if (this.state.format === "sealed") {
       this.setState({
         side: this.state.packs
-      })
-      this.setState({
-        pool: this.state.side
       })
     }
     this.startDraft()
@@ -72,7 +64,13 @@ class App extends React.Component {
   }
 
   handleTopPoolClick = (e) => {
-    this.addCardToDeck(e.target.alt, this.state.pool)
+    let pack
+    if (this.state.format === "draft") {
+      pack = this.state.packs[0]
+    } else {
+      pack = this.state.side
+    }
+    this.addCardToDeck(e.target.alt, this.state.side)
   }
 
   handleSidePoolClick = (e) => {
@@ -94,26 +92,27 @@ class App extends React.Component {
   }
 
   render () {
-    let pool, deck, sideboard, style;
+    let toppool, deck, sideboard, style, cards;
     if (this.state.started) {
       if (this.state.format === "draft") {
-        pool = <TopPool packs={this.state.pool} handleClick={this.handleTopPoolClick} />
         sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
         style = { width: 'calc(100% - 195px)' }
+        cards = this.state.packs[0]
       } else {
-        pool = <TopPool packs={this.state.pool} handleClick={this.handleTopPoolClick} />
         style = { width: '100%' }
+        cards = this.state.side
       }
+      toppool = <TopPool packs={cards} handleClick={this.handleTopPoolClick} />
       deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
     } else {
-      pool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
+      toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
 
     return (
       <div id="app">
         <div id="top">
           <Title started={this.state.started} onNew={this.newDraft} />
-          {pool}
+          {toppool}
         </div>
 
         <div id="bottom">
