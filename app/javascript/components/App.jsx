@@ -70,7 +70,7 @@ class App extends React.Component {
     } else {
       pack = this.state.side
     }
-    this.addCardToDeck(e.target.alt, this.state.side)
+    this.addCardToDeck(e.target.alt, pack)
   }
 
   handleSidePoolClick = (e) => {
