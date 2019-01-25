@@ -5,7 +5,14 @@ class TopPool extends React.Component {
   render () {
     let pool = this.props.packs.map((card, i) => {
       return (
-        <img className="card" src={card.imgurl} title={card.name} alt={card.name} key={i} onClick={this.props.handleClick}/>
+        <img
+          key={i}
+          className="card"
+          alt={card.name}
+          title={card.name}
+          src={card.imgurl}
+          onClick={this.props.handleClick}
+        />
       )
     })
 
