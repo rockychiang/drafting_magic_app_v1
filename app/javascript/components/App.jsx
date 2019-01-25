@@ -46,7 +46,7 @@ class App extends React.Component {
     this.setState(this.initialState)
   }
 
-  handleChange = (e) => {
+  handleFormChange = (e) => {
     const name = e.target.name
     const value = e.target.value
     this.setState({ [name]: value })
@@ -97,7 +97,7 @@ class App extends React.Component {
       }
       deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
     } else {
-      pool = <Form getPacks={this.getPacks} handleChange={this.handleChange} block={this.state.block} format={this.state.format} />
+      pool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
 
     return (
