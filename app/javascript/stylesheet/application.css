@@ -13,6 +13,21 @@ header {
  text-align: center;
 }
 
+#top {
+  height: 65%;
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#bottom {
+  bottom: 0;
+  height: 35%;
+  position: absolute;
+  width: 100%;
+}
+
 #btn-new {
   float: right;
   top: 15px;
@@ -20,7 +35,7 @@ header {
   position: absolute;
 }
 
-.top-pool {
+#top-pool {
   text-align: center;
 }
 
@@ -32,29 +47,22 @@ img.card:hover {
   width: 223px;
 }
 
-.bottom-pool {
-  background-color: white;
-  bottom: 0;
-  height: 267px;
-}
-
 .info-bar {
   background-color: lightgrey;
   border-bottom: 2px outset;
   border-top: 2px outset;
   height: 17px;
-  width: 100%;
 }
 
 #deck-pool {
-  position: fixed;
+  height: 100%;
+  position: absolute;
   left: 0;
 }
 
 #deck-stacks {
-  height: 92%;
-  width: 100%;
   display: flex;
+  height: calc(100% - 17px);
   overflow: scroll;
 }
 
@@ -80,13 +88,14 @@ img.deck:hover {
 }
 
 #side-pool {
-  position: fixed;
+  height: 100%;
+  min-width: 180px;
+  position: absolute;
   right: 0;
 }
 
 #pool-stacks {
-  height: 92%;
-  width: 100%;
   display: flex;
+  height: calc(100% - 17px);
   overflow: scroll;
 }
