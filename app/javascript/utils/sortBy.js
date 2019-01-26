@@ -10,11 +10,11 @@ export default function sortBy(category, cards) {
       break;
     case "color":
       sortedCards = cards.sort((a, b) => {
-        
+
       })
       break;
     case "cmc":
-      sortedCards
+      sortedCards = cards.sort((a, b) => a.cmc - b.cmc)
       break;
     case "rarity":
       sortedCards
