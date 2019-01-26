@@ -40,7 +40,10 @@ header {
 }
 
 #top-pool-menu {
-  margin-bottom: 12px;
+  background-color: white;
+  padding: 7px 0 10px;
+  position: sticky;
+  top: 0;
 }
 
 img.card {
