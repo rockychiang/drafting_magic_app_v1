@@ -39,6 +39,10 @@ header {
   text-align: center;
 }
 
+#top-pool-menu {
+  margin-bottom: 12px;
+}
+
 img.card {
   width: 223px;
 }

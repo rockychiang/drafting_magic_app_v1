@@ -7,7 +7,7 @@ class SortBy extends React.Component {
       <React.Fragment>
         <select className="sort" name="sort" onChange={this.props.onChange} defaultValue="color">
           <option value="color">Color</option>
-          <option value="cmc">Converted Mana Cost</option>
+          <option value="cmc">CMC</option>
           <option value="rarity">Rarity</option>
         </select>
       </React.Fragment>
