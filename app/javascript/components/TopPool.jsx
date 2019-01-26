@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import SortBy from "./SortBy.jsx"
+import sortBy from "../utils/sortBy.js"
 
 class TopPool extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class TopPool extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ cards: this.props.cards })
+    this.setState({ cards: sortBy("rarity", this.props.cards) })
   }
 
   componentWillReceiveProps(nextProps) {

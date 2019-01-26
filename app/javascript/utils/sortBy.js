@@ -17,7 +17,17 @@ export default function sortBy(category, cards) {
       sortedCards = cards.sort((a, b) => a.cmc - b.cmc)
       break;
     case "rarity":
-      sortedCards
+      sortedCards = cards.sort((a, b) => {
+        if (a.rarity === "Mythic" && b.rarity !== "Mythic") return -1;
+        if (a.rarity !== "Mythic" && b.rarity === "Mythic") return 1;
+        if (a.rarity === "Rare" && b.rarity !== "Rare") return -1;
+        if (a.rarity !== "Rare" && b.rarity === "Rare") return 1;
+        if (a.rarity === "Uncommon" && b.rarity !== "Uncommon") return -1;
+        if (a.rarity !== "Uncommon" && b.rarity === "Uncommon") return 1;
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      })
       break;
     default:
       sortedCards = cards.sort();

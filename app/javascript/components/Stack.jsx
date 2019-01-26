@@ -1,13 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
+import sortBy from "../utils/sortBy.js"
 
 class Stack extends React.Component {
   render () {
-    let stack = this.props.cards.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    }).map((card, i) => {
+    let stack = sortBy("name", this.props.cards).map((card, i) => {
       let style = { top: 20+i*27 + 'px' }
 
       return (
