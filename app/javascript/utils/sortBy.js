@@ -2,9 +2,7 @@ export default function sortBy(category, cards) {
   let sortedCards
   switch (category) {
     case "name":
-      sortedCards = cards.sort((a, b) => {
-        return sortByName(a,b);
-      });
+      sortedCards = cards.sort((a, b) => sortByName(a, b));
       break;
     case "color":
       sortedCards = cards.sort((a, b) => {
@@ -34,12 +32,10 @@ export default function sortBy(category, cards) {
       })
       break;
     case "cmc":
-      sortedCards = cards.sort((a, b) => a.cmc - b.cmc)
+      sortedCards = cards.sort((a, b) => sortByCmc(a, b));
       break;
     case "rarity":
-      sortedCards = cards.sort((a, b) => {
-        return sortByRarity(a, b);
-      })
+      sortedCards = cards.sort((a, b) => sortByRarity(a, b));
       break;
     default:
       sortedCards = cards.sort();
@@ -51,6 +47,12 @@ function sortByName(a, b) {
   if (a.name < b.name) return -1;
   if (a.name > b.name) return 1;
   return 0;
+}
+
+function sortByCmc(a, b) {
+  if (a.cmc < b.cmc) return -1;
+  if (a.cmc > b.cmc) return 1;
+  return sortByName(a, b);
 }
 
 function sortByRarity(a, b) {
