@@ -14,7 +14,7 @@ class TopPool extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ cards: sortBy("rarity", this.props.cards) })
+    this.setState({ cards: sortBy("color", this.props.cards) })
   }
 
   componentWillReceiveProps(nextProps) {
