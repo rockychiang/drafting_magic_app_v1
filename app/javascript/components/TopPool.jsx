@@ -18,11 +18,14 @@ class TopPool extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ cards: nextProps.cards })
+    this.setState({ cards: sortBy(this.state.sortBy, nextProps.cards) })
   }
 
   onChange = (e) => {
-    this.setState({ sortBy: e.target.value })
+    this.setState({
+      sortBy: e.target.value,
+      cards: sortBy(e.target.value, this.state.cards)
+    })
   }
 
   render () {
