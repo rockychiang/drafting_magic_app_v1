@@ -54,22 +54,12 @@ class App extends React.Component {
 
   getPacks = (packs) => {
     this.setState(Object.assign({ packs: packs }, this.initialDraftState))
-    if (this.state.format === "sealed") {
-      this.setState({
-        side: this.state.packs
-      })
-    }
+    this.state.format === "sealed" && this.setState({ side: this.state.packs })
     this.startDraft()
-    console.log(this.state)
   }
 
   handleTopPoolClick = (e) => {
-    let pack
-    if (this.state.format === "draft") {
-      pack = this.state.packs[0]
-    } else {
-      pack = this.state.side
-    }
+    let pack = this.state.format === "draft" ? this.state.packs[0] : this.state.side
     this.addCardToDeck(e.target.alt, pack)
   }
 
@@ -78,32 +68,27 @@ class App extends React.Component {
   }
 
   addCardToDeck = (cardName, pack) => {
-    let card = takeCard(cardName, pack)
-    this.setState({
-      deck: this.state.deck.concat(card)
-    })
+    let card = takeCard(cardName, pack);
+    let updatedDeck = this.state.deck.concat(card);
+    this.setState({ deck: updatedDeck });
   }
 
   addCardToSide = (e) => {
-    let card = takeCard(e.target.alt, this.state.deck)
-    this.setState({
-      side: this.state.side.concat(card)
-    })
+    let card = takeCard(e.target.alt, this.state.deck);
+    let updatedSide = this.state.side.concat(card);
+    this.setState({ side: updatedSide })
   }
 
   render () {
-    let toppool, deck, sideboard, style, cards;
+    let toppool, deck, sideboard;
     if (this.state.started) {
+      let style = this.state.format === "draft" ? { width: 'calc(100% - 195px)' } : { width: '100%' }
+      let topcards = this.state.format === "draft" ? this.state.packs[0] : this.state.side
+          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} />
+          deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
       if (this.state.format === "draft") {
         sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
-        style = { width: 'calc(100% - 195px)' }
-        cards = this.state.packs[0]
-      } else {
-        style = { width: '100%' }
-        cards = this.state.side
       }
-      toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} format={this.state.format} />
-      deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
