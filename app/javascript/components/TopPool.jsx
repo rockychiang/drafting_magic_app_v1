@@ -7,8 +7,17 @@ class TopPool extends React.Component {
     super()
 
     this.state = {
-      sortBy: "color"
+      sortBy: "color",
+      cards: []
     }
+  }
+
+  componentDidMount() {
+    this.setState({ cards: this.props.cards })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ cards: nextProps.cards })
   }
 
   onChange = (e) => {
@@ -17,7 +26,7 @@ class TopPool extends React.Component {
 
   render () {
     let menu
-    let pool = this.props.packs.map((card, i) => {
+    let pool = this.state.cards.map((card, i) => {
       return (
         <img
           key={i}

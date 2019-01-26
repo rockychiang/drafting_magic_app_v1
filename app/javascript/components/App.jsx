@@ -102,7 +102,7 @@ class App extends React.Component {
         style = { width: '100%' }
         cards = this.state.side
       }
-      toppool = <TopPool packs={cards} handleClick={this.handleTopPoolClick} format={this.state.format} />
+      toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} format={this.state.format} />
       deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
