@@ -4,16 +4,17 @@ import Stack from "./Stack.jsx"
 
 class Deck extends React.Component {
   render () {
-    let one = this.props.cards.filter(card => card.cmc < 2 && !card.types.includes("Land"))
-    let two = this.props.cards.filter(card => card.cmc === 2)
-    let three = this.props.cards.filter(card => card.cmc === 3)
-    let four = this.props.cards.filter(card => card.cmc === 4)
-    let five = this.props.cards.filter(card => card.cmc === 5)
-    let six = this.props.cards.filter(card => card.cmc > 5)
-    let land = this.props.cards.filter(card => card.types.includes("Land"))
+    let cards = this.props.cards
+    let one = cards.filter(card => card.cmc < 2 && !card.types.includes("Land"))
+    let two = cards.filter(card => card.cmc === 2)
+    let three = cards.filter(card => card.cmc === 3)
+    let four = cards.filter(card => card.cmc === 4)
+    let five = cards.filter(card => card.cmc === 5)
+    let six = cards.filter(card => card.cmc > 5)
+    let land = cards.filter(card => card.types.includes("Land"))
     let lands = land.length
-    let creatures = this.props.cards.filter(card => card.types.includes("Creature")).length
-    let total = this.props.cards.length
+    let creatures = cards.filter(card => card.types.includes("Creature")).length
+    let total = cards.length
     let others = total - lands - creatures
 
     return (
