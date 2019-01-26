@@ -22,13 +22,7 @@ class App extends React.Component {
     this.initialDraftState = {
       deck: [],
       side: [],
-      bot1: [],
-      bot2: [],
-      bot3: [],
-      bot4: [],
-      bot5: [],
-      bot6: [],
-      bot7: [],
+      bots: [ [], [], [], [], [], [], [] ],
       pick: 1
     }
 
