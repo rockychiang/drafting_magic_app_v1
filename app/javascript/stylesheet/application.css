@@ -63,7 +63,7 @@ img.card:hover {
 
 #deck-pool {
   background-color: white;
-  height: 100%;
+  height: calc(100% - 10px);
   position: absolute;
   left: 0;
 }
@@ -100,7 +100,7 @@ img.deck:hover {
 
 #side-pool {
   background-color: white;
-  height: 100%;
+  height: calc(100% - 10px);
   min-width: 195px;
   position: absolute;
   right: 0;
