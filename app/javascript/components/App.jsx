@@ -6,6 +6,7 @@ import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 import SideBoard from "./SideBoard.jsx"
 import takeCard from "../utils/takeCard.js"
+import rotatePacks from "../utils/rotatePacks.js"
 
 class App extends React.Component {
   constructor() {
@@ -56,8 +57,7 @@ class App extends React.Component {
     this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft") {
-      let pack = this.state.packs.shift();
-      this.state.packs.splice(7, 0, pack);
+      rotatePacks(this.state.packs, this.state.pick);
       this.setState({ pick: this.state.pick + 1 });
     }
   }
