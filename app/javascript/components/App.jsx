@@ -41,8 +41,7 @@ class App extends React.Component {
   }
 
   handleFormChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
+    const { name, value } = e.target
     this.setState({ [name]: value })
   }
 
@@ -55,6 +54,14 @@ class App extends React.Component {
   handleTopPoolClick = (e) => {
     let pack = this.state.format === "draft" ? this.state.packs[0] : this.state.side
     this.addCardToDeck(e.target.alt, pack)
+
+    if (this.state.format === "draft") {
+      let pack = this.state.packs.shift();
+      this.state.packs.splice(7, 0, pack)
+      this.setState({
+        pick: this.state.pick + 1
+      })
+    }
   }
 
   handleSidePoolClick = (e) => {

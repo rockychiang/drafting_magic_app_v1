@@ -46,11 +46,7 @@ class TopPool extends React.Component {
     })
 
     if (this.props.format === "sealed") {
-      menu = (
-        <label>
-          Sort By: <SortBy onChange={this.onChange} />
-        </label>
-      )
+      menu = <label> Sort By: <SortBy onChange={this.onChange} /> </label>
     }
 
     return (
