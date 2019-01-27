@@ -53,7 +53,7 @@ class App extends React.Component {
   }
 
   handleTopPoolClick = (e) => {
-    let pack = this.state.format === "draft" ? this.state.packs[0] : this.state.side
+    let pack = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
     this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft" && !this.state.finished) {
