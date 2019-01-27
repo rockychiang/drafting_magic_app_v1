@@ -56,9 +56,10 @@ class App extends React.Component {
     let pack = this.state.format === "draft" ? this.state.packs[0] : this.state.side
     this.addCardToDeck(e.target.alt, pack);
 
-    if (this.state.format === "draft") {
+    if (this.state.format === "draft" && !this.state.finished) {
       rotatePacks(this.state.packs, this.state.pick);
       this.setState({ pick: this.state.pick + 1 });
+      this.state.pick >= 45 && this.setState({ finished: true })
     }
   }
 
@@ -81,11 +82,11 @@ class App extends React.Component {
   render () {
     let toppool, deck, sideboard;
     if (this.state.started) {
-      let style = this.state.format === "draft" ? { width: 'calc(100% - 195px)' } : { width: '100%' }
-      let topcards = this.state.format === "draft" ? this.state.packs[0] : this.state.side
-          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick}/>
+      let style = (this.state.format === "draft" && !this.state.finished) ? { width: 'calc(100% - 195px)' } : { width: '100%' }
+      let topcards = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
+          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
           deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
-      if (this.state.format === "draft") {
+      if (this.state.format === "draft" && !this.state.finished) {
         sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
       }
     } else {

@@ -14,12 +14,12 @@ class TopPool extends React.Component {
   }
 
   componentDidMount() {
-    let cards = this.props.format === "draft" ? this.props.cards : sortBy("color", this.props.cards)
+    let cards = (this.props.format === "draft" && !this.props.finished) ? this.props.cards : sortBy("color", this.props.cards)
     this.setState({ cards: cards })
   }
 
   componentWillReceiveProps(nextProps) {
-    let cards = this.props.format === "draft" ? nextProps.cards : sortBy(this.state.sortBy, nextProps.cards)
+    let cards = (this.props.format === "draft" && !this.props.finished) ? nextProps.cards : sortBy(this.state.sortBy, nextProps.cards)
     this.setState({ cards: cards })
   }
 
@@ -45,7 +45,7 @@ class TopPool extends React.Component {
       )
     })
 
-    if (this.props.format === "draft") {
+    if (this.props.format === "draft" && !this.props.finished) {
       let pack = Math.ceil(this.props.pick/15);
       let pick = this.props.pick - (pack-1)*15;
           menu = <span> Pack: {pack} / Pick: {pick} </span>
