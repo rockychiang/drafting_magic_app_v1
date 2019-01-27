@@ -85,7 +85,7 @@ class App extends React.Component {
     if (this.state.started) {
       let style = this.state.format === "draft" ? { width: 'calc(100% - 195px)' } : { width: '100%' }
       let topcards = this.state.format === "draft" ? this.state.packs[0] : this.state.side
-          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} />
+          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick}/>
           deck = <Deck cards={this.state.deck} style={style} handleClick={this.addCardToSide} />
       if (this.state.format === "draft") {
         sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />

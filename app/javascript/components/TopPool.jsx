@@ -31,7 +31,7 @@ class TopPool extends React.Component {
   }
 
   render () {
-    let menu
+    let menu;
     let pool = this.state.cards.map((card, i) => {
       return (
         <img
@@ -45,8 +45,12 @@ class TopPool extends React.Component {
       )
     })
 
-    if (this.props.format === "sealed") {
-      menu = <label> Sort By: <SortBy onChange={this.onChange} /> </label>
+    if (this.props.format === "draft") {
+      let pack = Math.ceil(this.props.pick/15);
+      let pick = this.props.pick - (pack-1)*15;
+          menu = <span> Pack: {pack} / Pick: {pick} </span>
+    } else {
+          menu = <label> Sort By: <SortBy onChange={this.onChange} /> </label>
     }
 
     return (
