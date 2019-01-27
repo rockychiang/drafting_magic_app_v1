@@ -37,35 +37,33 @@ class App extends React.Component {
   }
 
   newDraft = () => {
-    this.setState(this.initialState)
+    this.setState(this.initialState);
   }
 
   handleFormChange = (e) => {
-    const { name, value } = e.target
-    this.setState({ [name]: value })
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   getPacks = (packs) => {
-    this.setState(Object.assign({ packs: packs }, this.initialDraftState))
-    this.state.format === "sealed" && this.setState({ side: this.state.packs })
-    this.startDraft()
+    this.setState(Object.assign({ packs: packs }, this.initialDraftState));
+    this.state.format === "sealed" && this.setState({ side: this.state.packs });
+    this.startDraft();
   }
 
   handleTopPoolClick = (e) => {
     let pack = this.state.format === "draft" ? this.state.packs[0] : this.state.side
-    this.addCardToDeck(e.target.alt, pack)
+    this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft") {
       let pack = this.state.packs.shift();
-      this.state.packs.splice(7, 0, pack)
-      this.setState({
-        pick: this.state.pick + 1
-      })
+      this.state.packs.splice(7, 0, pack);
+      this.setState({ pick: this.state.pick + 1 });
     }
   }
 
   handleSidePoolClick = (e) => {
-    this.addCardToDeck(e.target.alt, this.state.side)
+    this.addCardToDeck(e.target.alt, this.state.side);
   }
 
   addCardToDeck = (cardName, pack) => {
@@ -77,7 +75,7 @@ class App extends React.Component {
   addCardToSide = (e) => {
     let card = takeCard(e.target.alt, this.state.deck);
     let updatedSide = this.state.side.concat(card);
-    this.setState({ side: updatedSide })
+    this.setState({ side: updatedSide });
   }
 
   render () {
