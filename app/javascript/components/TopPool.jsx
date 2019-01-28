@@ -14,7 +14,7 @@ class TopPool extends React.Component {
   }
 
   componentDidMount() {
-    let cards = (this.props.format === "draft" && !this.props.finished) ? this.props.cards : sortBy("color", this.props.cards)
+    let cards = this.props.format === "draft" ? this.props.cards : sortBy("color", this.props.cards)
     this.setState({ cards: cards })
   }
 

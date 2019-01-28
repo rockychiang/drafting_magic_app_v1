@@ -46,7 +46,7 @@ function sortByColor(a, b) {
   if (b.colors.includes("R") && !a.colors.includes("R")) return 1;
   if (a.colors.includes("G") && !b.colors.includes("G")) return -1;
   if (b.colors.includes("G") && !a.colors.includes("G")) return 1;
-  return sortByName(a, b);
+  return sortByCmc(a, b);
 }
 
 function sortByCmc(a, b) {
@@ -62,5 +62,5 @@ function sortByRarity(a, b) {
   if (a.rarity !== "Rare" && b.rarity === "Rare") return 1;
   if (a.rarity === "Uncommon" && b.rarity !== "Uncommon") return -1;
   if (a.rarity !== "Uncommon" && b.rarity === "Uncommon") return 1;
-  return sortByName(a, b);
+  return sortByColor(a, b);
 }

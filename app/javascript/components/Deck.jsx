@@ -20,7 +20,7 @@ class Deck extends React.Component {
     return (
       <div id="deck-pool" style={this.props.style}>
         <div className="info-bar">
-          <span>Lands: {lands}    Creatures: {creatures}    Others: {others}    Total: {total}</span>
+          <span>Creatures: {creatures}    Others: {others}    Lands: {lands}    Total: {total}</span>
         </div>
         <div id="deck-stacks">
           <Stack cards={one} handleClick={this.props.handleClick} />

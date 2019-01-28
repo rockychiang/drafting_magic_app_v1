@@ -5,11 +5,11 @@ class Format extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <label>
-          Format:
-          <input type="radio" name="format" value="draft" onChange={this.props.onChecked} defaultChecked />Draft
-          <input type="radio" name="format" value="sealed" onChange={this.props.onChecked} />Sealed
-        </label>
+        <label>Format:</label>
+        <input type="radio" id="draft" name="format" value="draft" onChange={this.props.onChecked} defaultChecked />
+        <label htmlFor="draft" className="light">Draft</label><br/>
+        <input type="radio" id="sealed" name="format" value="sealed" onChange={this.props.onChecked} />
+        <label htmlFor="sealed" className="light">Sealed</label>
       </React.Fragment>
     );
   }

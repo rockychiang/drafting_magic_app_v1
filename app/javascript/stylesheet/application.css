@@ -9,12 +9,14 @@ body {
   margin: 0;
 }
 
-header {
+h1 {
  text-align: center;
+ margin: 10px auto 20px;
+ max-width: 300px;
 }
 
 #top {
-  height: 65%;
+  height: 50%;
   overflow-x: scroll;
   position: absolute;
   top: 0;
@@ -23,7 +25,7 @@ header {
 
 #bottom {
   bottom: 0;
-  height: 35%;
+  height: 50%;
   position: absolute;
   width: 100%;
 }
@@ -112,4 +114,62 @@ img.deck:hover {
   height: calc(100% - 17px);
   overflow: scroll;
   padding: 5px;
+}
+
+/* Front Page Form */
+
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+form select {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 2px;
+  font-size: 16px;
+  height: 32px;
+  margin: 0;
+  outline: 0;
+  padding: 6px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+form button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+  font: 400 16px system-ui;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
 }
