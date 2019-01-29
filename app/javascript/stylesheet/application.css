@@ -45,9 +45,13 @@ h1 {
 
 #top-pool-menu {
   background-color: white;
-  padding: 10px 0 2px;
+  padding: 10px 0 10px;
   position: sticky;
   top: 0;
+}
+
+.menu {
+  font: 400 16px system-ui;;
 }
 
 img.card {
@@ -175,7 +179,7 @@ form button:active {
   background-color: red;
 }
 
-label {
+form label {
   display: block;
   font: 400 16px system-ui;
   margin-bottom: 8px;

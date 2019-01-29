@@ -48,9 +48,9 @@ class TopPool extends React.Component {
     if (this.props.format === "draft" && !this.props.finished) {
       let pack = Math.ceil(this.props.pick/15);
       let pick = this.props.pick - (pack-1)*15;
-          menu = <span> Pack: {pack} / Pick: {pick} </span>
+          menu = <span className="menu">Pack: {pack} / Pick: {pick}</span>
     } else {
-          menu = <label> Sort By: <SortBy onChange={this.onChange} /> </label>
+          menu = <label className="menu">Sort By:<SortBy onChange={this.onChange} /></label>
     }
 
     return (
