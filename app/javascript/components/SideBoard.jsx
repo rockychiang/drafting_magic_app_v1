@@ -7,7 +7,7 @@ class SideBoard extends React.Component {
     return (
       <div id="side-pool">
         <div className="info-bar">
-          <span>Sideboard: {this.props.cards.length}</span>
+          <span className="info-bar-text">Sideboard: {this.props.cards.length}</span>
         </div>
         <div id="pool-stacks">
           <Stack cards={this.props.cards} handleClick={this.props.handleClick} />
