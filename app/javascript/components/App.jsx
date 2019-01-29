@@ -13,7 +13,7 @@ class App extends React.Component {
     super()
 
     this.initialState= {
-      block: "grn",
+      block: "rna",
       format: "draft",
       packs: [],
       started: false,
