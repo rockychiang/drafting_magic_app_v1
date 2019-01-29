@@ -10,9 +10,11 @@ body {
 }
 
 h1 {
- text-align: center;
- margin: 10px auto 20px;
- max-width: 300px;
+  font-family: system-ui;
+  font-variant: small-caps;
+  text-align: center;
+  margin: 10px auto 20px;
+  max-width: 300px;
 }
 
 #top {
