@@ -1,12 +1,12 @@
-cards = MTG::Card.where(set: 'grn').all
+cards = MTG::Card.where(set: 'rna').all
 
-grn = Block.new
-grn.name = cards.first.set_name
-grn.code = cards.first.set
-grn.save
+block = Block.new
+block.name = cards.first.set_name
+block.code = cards.first.set
+block.save
 
 cards.each do |card|
-  c = grn.cards.new
+  c = block.cards.new
   c.name = card.name
   c.rarity = card.rarity
   c.layout = card.layout
