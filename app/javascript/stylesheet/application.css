@@ -62,7 +62,13 @@ img.card:hover {
   background-color: lightgrey;
   border-bottom: 2px outset;
   border-top: 2px outset;
+  font-family: system-ui;
+  font-size: 14px;
   height: 17px;
+}
+
+.info-bar-text {
+  margin-left: 30px;
 }
 
 #deck-pool {
