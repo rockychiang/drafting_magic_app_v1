@@ -4,6 +4,7 @@ import sortBy from "../utils/sortBy.js"
 
 class Stack extends React.Component {
   render () {
+    let count = this.props.cards.length || ""
     let stack = sortBy("name", this.props.cards).map((card, i) => {
       let style = { top: 20+i*27 + 'px' }
 
@@ -21,7 +22,7 @@ class Stack extends React.Component {
 
     return (
       <div className="stack">
-        <p className="count">{this.props.cards.length}</p>
+        <p className="count">{count}</p>
         {stack}
       </div>
     );
