@@ -33,10 +33,10 @@ h1 {
 }
 
 #btn-new {
-  float: right;
-  top: 15px;
+  top: 10px;
   right: 30px;
-  position: absolute;
+  position: fixed;
+  z-index: 10;
 }
 
 #top-pool {
@@ -45,7 +45,7 @@ h1 {
 
 #top-pool-menu {
   background-color: white;
-  padding: 7px 0 10px;
+  padding: 10px 0 2px;
   position: sticky;
   top: 0;
 }
