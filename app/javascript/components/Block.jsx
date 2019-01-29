@@ -6,8 +6,8 @@ class Block extends React.Component {
     return (
       <React.Fragment>
         <label htmlFor="block">Set:</label>
-        <select id="block" name="block" onChange={this.props.onChange} defaultValue="grn">
-          <option value="rna" disabled>Ravnica Allegiance (coming soon)</option>
+        <select id="block" name="block" onChange={this.props.onChange} defaultValue="rna">
+          <option value="rna" >Ravnica Allegiance (coming soon)</option>
           <option value="grn" >Guilds of Ravnica</option>
           <option value="dom" disabled>Dominaria (coming soon)</option>
         </select>
