@@ -16,6 +16,7 @@ class Stack extends React.Component {
           src={card.imgurl}
           style={style}
           onClick={this.props.handleClick}
+          onMouseOver={this.props.handleHover}
         />
       )
     })

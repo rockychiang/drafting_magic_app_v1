@@ -54,6 +54,11 @@ class App extends React.Component {
     this.startDraft();
   }
 
+  handleCardHover = (e) => {
+    let source
+    this.setState({ preview: e.target.src })
+  }
+
   handleTopPoolClick = (e) => {
     let pack = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
     this.addCardToDeck(e.target.alt, pack);
@@ -85,8 +90,8 @@ class App extends React.Component {
     let toppool, deck, preview;
     if (this.state.started) {
       let topcards = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
-          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
-          deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} />
+          toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
+          deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
           preview = <Preview preview={this.state.preview} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />

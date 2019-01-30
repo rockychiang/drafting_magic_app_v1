@@ -41,6 +41,7 @@ class TopPool extends React.Component {
           title={card.name}
           src={card.imgurl}
           onClick={this.props.handleClick}
+          onMouseOver={this.props.handleHover}
         />
       )
     })

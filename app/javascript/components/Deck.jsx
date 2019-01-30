@@ -26,13 +26,13 @@ class Deck extends React.Component {
           <span className="info-bar-text">Total: {total}</span>
         </div>
         <div id="deck-stacks">
-          <Stack cards={one} handleClick={this.props.handleClick} />
-          <Stack cards={two} handleClick={this.props.handleClick} />
-          <Stack cards={three} handleClick={this.props.handleClick} />
-          <Stack cards={four} handleClick={this.props.handleClick} />
-          <Stack cards={five} handleClick={this.props.handleClick} />
-          <Stack cards={six} handleClick={this.props.handleClick} />
-          <Stack cards={land} handleClick={this.props.handleClick} />
+          <Stack cards={one} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={two} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={three} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={four} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={five} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={six} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          <Stack cards={land} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
         </div>
       </div>
     );

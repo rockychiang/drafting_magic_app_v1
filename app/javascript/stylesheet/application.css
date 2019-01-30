@@ -76,6 +76,7 @@ img.card {
   background-color: white;
   height: calc(100% - 10px);
   position: absolute;
+  bottom: 0;
   left: 0;
   width: calc(100% - 238px);
 }
@@ -105,10 +106,6 @@ img.deck {
   position: absolute;
   height: 230px;
   width: 165px;
-}
-
-img.deck:hover {
-  z-index: 999;
 }
 
 #preview-box {
