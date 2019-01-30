@@ -12,10 +12,12 @@ class Deck extends React.Component {
     let five = cards.filter(card => card.cmc === 5)
     let six = cards.filter(card => card.cmc > 5)
     let land = cards.filter(card => card.types.includes("Land"))
+    let stacks = [one, two, three, four, five, six, land]
     let lands = land.length
     let creatures = cards.filter(card => card.types.includes("Creature")).length
     let total = cards.length
     let others = total - lands - creatures
+    let deckstacks = stacks.map(stack => <Stack cards={stack} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>)
 
     return (
       <div id="deck-pool">
@@ -26,13 +28,7 @@ class Deck extends React.Component {
           <span className="info-bar-text">Total: {total}</span>
         </div>
         <div id="deck-stacks">
-          <Stack cards={one} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={two} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={three} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={four} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={five} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={six} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
-          <Stack cards={land} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+          {deckstacks}
         </div>
       </div>
     );
