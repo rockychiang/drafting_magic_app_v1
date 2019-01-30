@@ -3,15 +3,19 @@ import PropTypes from "prop-types"
 
 class Title extends React.Component {
   render () {
-    let newButton
+    let newButton,layoutButton
     if (this.props.started) {
-      newButton = <button id="btn-new" onClick={this.props.onNew}>New Draft</button>
+      newButton = <button className="top-btn" onClick={this.props.onNew}>New Draft</button>
+      layoutButton = <button className="top-btn" >Change Deck Layout</button>
     }
 
     return (
       <header>
         <h1>Drafting Magic</h1>
-        {newButton}
+        <ol id="buttons">
+          <li>{newButton}</li>
+          <li>{layoutButton}</li>
+        </ol>
       </header>
     );
   }

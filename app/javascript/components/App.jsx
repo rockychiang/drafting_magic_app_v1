@@ -20,6 +20,7 @@ class App extends React.Component {
       packs: [],
       started: false,
       finished: false,
+      layout: 1,
       preview: CardBack
     }
 
