@@ -4,7 +4,7 @@ import Title from "./Title.jsx"
 import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
-import SideBoard from "./SideBoard.jsx"
+import Preview from "./Preview.jsx"
 import takeCard from "../utils/takeCard.js"
 import rotatePacks from "../utils/rotatePacks.js"
 
@@ -80,14 +80,12 @@ class App extends React.Component {
   }
 
   render () {
-    let toppool, deck, sideboard;
+    let toppool, deck, preview;
     if (this.state.started) {
       let topcards = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
           toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
           deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} />
-      if (this.state.format === "draft" && !this.state.finished) {
-        sideboard = <SideBoard cards={this.state.side} handleClick={this.handleSidePoolClick} />
-      }
+          preview = <Preview cards={this.state.side} handleClick={this.handleSidePoolClick} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
@@ -101,7 +99,7 @@ class App extends React.Component {
 
         <div id="bottom">
           {deck}
-          {sideboard}
+          {preview}
         </div>
       </div>
     );
