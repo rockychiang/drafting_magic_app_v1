@@ -55,6 +55,7 @@ h1 {
 }
 
 img.card {
+  height: 311px;
   width: 223px;
 }
 
@@ -81,7 +82,7 @@ img.card {
 
 #deck-stacks {
   display: flex;
-  height: calc(100% - 16px);
+  height: calc(100% - 21px);
   margin-right: 5px;
   overflow: scroll;
   padding: 5px;
@@ -102,6 +103,7 @@ img.card {
 
 img.deck {
   position: absolute;
+  height: 230px;
   width: 165px;
 }
 
@@ -109,19 +111,19 @@ img.deck:hover {
   z-index: 999;
 }
 
-#side-pool {
+#preview-box {
   background-color: white;
   height: calc(100% - 10px);
   min-width: 238px;
   position: absolute;
+  bottom: 0;
   right: 0;
 }
 
-#pool-stacks {
+#card-preview {
   border-left: 5px outset darkgrey;
-  display: flex;
-  height: calc(100% - 17px);
-  overflow: scroll;
+  height: calc(100% - 21px);
+  margin: auto;
   padding: 5px;
 }
 

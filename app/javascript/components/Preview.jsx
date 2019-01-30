@@ -1,20 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Stack from "./Stack.jsx"
 
-class SideBoard extends React.Component {
+class Preview extends React.Component {
   render () {
     return (
-      <div id="side-pool">
+      <div id="preview-box">
         <div className="info-bar">
-          <span className="info-bar-text">Sideboard: {this.props.cards.length}</span>
+          <span className="info-bar-text">Card Preview</span>
         </div>
-        <div id="pool-stacks">
-          <Stack cards={this.props.cards} handleClick={this.props.handleClick} />
+        <div id="card-preview">
+          <img className="card" alt="card preview" title="card preview" src={this.props.preview} />
         </div>
       </div>
     );
   }
 }
 
-export default SideBoard
+export default Preview

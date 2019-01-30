@@ -6,7 +6,7 @@ class Stack extends React.Component {
   render () {
     let count = this.props.cards.length || ""
     let stack = sortBy("name", this.props.cards).map((card, i) => {
-      let style = { top: 20+i*27 + 'px' }
+      let style = { top: 20+i*25 + 'px' }
 
       return (
         <img

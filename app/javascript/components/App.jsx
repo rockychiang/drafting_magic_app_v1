@@ -87,7 +87,7 @@ class App extends React.Component {
       let topcards = (this.state.format === "draft" && !this.state.finished) ? this.state.packs[0] : this.state.side
           toppool = <TopPool cards={topcards} handleClick={this.handleTopPoolClick} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
           deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} />
-          preview = <Preview cards={this.state.side} handleClick={this.handleSidePoolClick} />
+          preview = <Preview preview={this.state.preview} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
