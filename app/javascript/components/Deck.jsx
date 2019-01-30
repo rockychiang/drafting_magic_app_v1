@@ -17,7 +17,11 @@ class Deck extends React.Component {
     let creatures = cards.filter(card => card.types.includes("Creature")).length
     let total = cards.length
     let others = total - lands - creatures
-    let deckstacks = stacks.map(stack => <Stack cards={stack} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>)
+    let deckstacks = stacks.map(stack => {
+      if (stack.length > 0) {
+        return <Stack cards={stack} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+      }
+    })
 
     return (
       <div id="deck-pool">
