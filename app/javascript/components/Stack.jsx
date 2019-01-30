@@ -4,8 +4,9 @@ import sortBy from "../utils/sortBy.js"
 
 class Stack extends React.Component {
   render () {
-    let count = this.props.cards.length || ""
-    let stack = sortBy("color", this.props.cards).map((card, i) => {
+    let { cards, handleClick, handleHover } = this.props
+    let count = cards.length || ""
+    let stack = sortBy("color", cards).map((card, i) => {
       let style = { top: 20+i*25 + 'px' }
 
       return (
@@ -15,8 +16,8 @@ class Stack extends React.Component {
           alt={card.name}
           src={card.imgurl}
           style={style}
-          onClick={this.props.handleClick}
-          onMouseOver={this.props.handleHover}
+          onClick={handleClick}
+          onMouseOver={handleHover}
         />
       )
     })
