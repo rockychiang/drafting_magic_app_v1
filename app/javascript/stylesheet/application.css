@@ -58,10 +58,6 @@ img.card {
   width: 223px;
 }
 
-img.card:hover {
-  width: 223px;
-}
-
 .info-bar {
   background-color: lightgrey;
   border-bottom: 2px outset;
@@ -80,11 +76,12 @@ img.card:hover {
   height: calc(100% - 10px);
   position: absolute;
   left: 0;
+  width: calc(100% - 238px);
 }
 
 #deck-stacks {
   display: flex;
-  height: calc(100% - 17px);
+  height: calc(100% - 16px);
   margin-right: 5px;
   overflow: scroll;
   padding: 5px;
@@ -100,12 +97,12 @@ img.card:hover {
   display: inline-block;
   margin-right: 5px;
   position: relative;
-  min-width: 175px;
+  min-width: 165px;
 }
 
 img.deck {
   position: absolute;
-  width: 175px;
+  width: 165px;
 }
 
 img.deck:hover {
@@ -115,7 +112,7 @@ img.deck:hover {
 #side-pool {
   background-color: white;
   height: calc(100% - 10px);
-  min-width: 195px;
+  min-width: 238px;
   position: absolute;
   right: 0;
 }
@@ -149,7 +146,6 @@ form select {
   padding: 6px;
   width: 100%;
   background-color: #e8eeef;
-  color: #8a97a0;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-bottom: 30px;
 }

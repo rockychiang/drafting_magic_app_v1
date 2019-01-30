@@ -20,7 +20,6 @@ class Form extends React.Component {
       data: data,
       success: (packs) => {
         this.props.getPacks(packs)
-        console.log(data)
       }
     })
   }
