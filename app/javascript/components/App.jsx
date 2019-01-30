@@ -90,18 +90,23 @@ class App extends React.Component {
     let toppool, deck, preview;
     if (this.state.started) {
       let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
-          toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
-          deck = (
-            <Tabs>
-              <div label="Main Deck">
-                <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
-              </div>
-              <div label="Sideboard">
-                <Deck cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
-              </div>
-            </Tabs>
-          )
-          preview = <Preview preview={this.state.preview} />
+      toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished} />
+      preview = <Preview preview={this.state.preview} />
+
+      if (this.state.format === "sealed" || this.state.finished) {
+        deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+      } else {
+        deck = (
+          <Tabs>
+            <div label="Main Deck">
+              <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+            </div>
+            <div label="Sideboard">
+              <Deck cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+            </div>
+          </Tabs>
+        )
+      }
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
     }
