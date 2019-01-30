@@ -27,7 +27,7 @@ h1 {
 
 #bottom {
   bottom: 10px;
-  height: 50%;
+  height: calc(50% + 30px);
   position: absolute;
   width: 100%;
 }
@@ -74,7 +74,7 @@ img.card {
 
 #deck-pool {
   background-color: white;
-  height: 100%;
+  height: calc(100% - 30px);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -110,7 +110,7 @@ img.deck {
 
 #preview-box {
   background-color: white;
-  height: 100%;
+  height: calc(100% - 30px);
   min-width: 238px;
   position: absolute;
   bottom: 0;
@@ -183,4 +183,34 @@ form label {
 label.light {
   font-weight: 300;
   display: inline;
+}
+
+/* Tab Style */
+
+ol {
+  margin: 0;
+}
+
+.tabs {
+  height: 100%;
+  width: calc(100% - 238px);
+}
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  background-color: white;
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: lightgrey;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
 }

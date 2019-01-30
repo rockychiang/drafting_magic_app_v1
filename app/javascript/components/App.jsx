@@ -5,6 +5,7 @@ import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 import Deck from "./Deck.jsx"
 import Preview from "./Preview.jsx"
+import Tabs from "./Tabs"
 import takeCard from "../utils/takeCard.js"
 import rotatePacks from "../utils/rotatePacks.js"
 import CardBack from "images/MTG_Card_Back.jpg"
@@ -69,7 +70,7 @@ class App extends React.Component {
     }
   }
 
-  handleSidePoolClick = (e) => {
+  handleSideboardClick = (e) => {
     this.addCardToDeck(e.target.alt, this.state.side);
   }
 
@@ -90,7 +91,16 @@ class App extends React.Component {
     if (this.state.started) {
       let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
           toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished}/>
-          deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+          deck = (
+            <Tabs>
+              <div label="Main Deck">
+                <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+              </div>
+              <div label="Sideboard">
+                <Deck cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+              </div>
+            </Tabs>
+          )
           preview = <Preview preview={this.state.preview} />
     } else {
       toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
