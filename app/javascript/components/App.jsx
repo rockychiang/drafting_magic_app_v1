@@ -7,6 +7,7 @@ import Deck from "./Deck.jsx"
 import Preview from "./Preview.jsx"
 import takeCard from "../utils/takeCard.js"
 import rotatePacks from "../utils/rotatePacks.js"
+import CardBack from "images/MTG_Card_Back.jpg"
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +18,8 @@ class App extends React.Component {
       format: "draft",
       packs: [],
       started: false,
-      finished: false
+      finished: false,
+      preview: CardBack
     }
 
     this.initialDraftState = {
