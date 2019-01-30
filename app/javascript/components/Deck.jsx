@@ -4,7 +4,7 @@ import Stack from "./Stack.jsx"
 
 class Deck extends React.Component {
   render () {
-    let cards = this.props.cards
+    let { cards, handleClick, handleHover } = this.props
     let one = cards.filter(card => card.cmc < 2 && !card.types.includes("Land"))
     let two = cards.filter(card => card.cmc === 2)
     let three = cards.filter(card => card.cmc === 3)
@@ -19,7 +19,7 @@ class Deck extends React.Component {
     let others = total - lands - creatures
     let deckstacks = stacks.map((stack, i) => {
       if (stack.length > 0) {
-        return <Stack key={i} cards={stack} handleClick={this.props.handleClick} handleHover={this.props.handleHover}/>
+        return <Stack key={i} cards={stack} handleClick={handleClick} handleHover={handleHover}/>
       }
     })
 
