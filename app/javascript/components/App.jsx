@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Title from "./Title.jsx"
 import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
-import Deck from "./Deck.jsx"
+import DeckCurve from "./DeckCurve.jsx"
 import Preview from "./Preview.jsx"
 import Tabs from "./Tabs"
 import takeCard from "../utils/takeCard.js"
@@ -94,15 +94,15 @@ class App extends React.Component {
       preview = <Preview preview={this.state.preview} />
 
       if (this.state.format === "sealed" || this.state.finished) {
-        deck = <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+        deck = <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
       } else {
         deck = (
           <Tabs>
             <div label="Main Deck">
-              <Deck cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+              <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
             </div>
             <div label="Sideboard">
-              <Deck cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+              <DeckCurve cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
             </div>
           </Tabs>
         )
