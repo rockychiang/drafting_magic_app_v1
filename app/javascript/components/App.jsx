@@ -20,7 +20,7 @@ class App extends React.Component {
       packs: [],
       started: false,
       finished: false,
-      layout: 1,
+      normalLayout: true,
       preview: CardBack
     }
 
@@ -43,6 +43,11 @@ class App extends React.Component {
 
   newDraft = () => {
     this.setState(this.initialState);
+  }
+
+  layoutChange = () => {
+    this.setState({ normalLayout: !this.state.normalLayout })
+    console.log(this.state.normalLayout)
   }
 
   handleFormChange = (e) => {
@@ -115,7 +120,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <div id="top">
-          <Title started={this.state.started} onNew={this.newDraft} />
+          <Title started={this.state.started} onNew={this.newDraft} onLayoutChange={this.layoutChange}/>
           {toppool}
         </div>
 

@@ -4,9 +4,10 @@ import PropTypes from "prop-types"
 class Title extends React.Component {
   render () {
     let newButton,layoutButton
-    if (this.props.started) {
-      newButton = <button className="top-btn" onClick={this.props.onNew}>New Draft</button>
-      layoutButton = <button className="top-btn" >Change Deck Layout</button>
+    let { started, onNew, onLayoutChange } = this.props
+    if (started) {
+      newButton = <button className="top-btn" onClick={onNew}>New Draft</button>
+      layoutButton = <button className="top-btn" onClick={onLayoutChange}>Change Deck Layout</button>
     }
 
     return (
