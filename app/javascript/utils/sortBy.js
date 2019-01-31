@@ -26,6 +26,10 @@ function sortByName(a, b) {
 }
 
 function sortByColor(a, b) {
+  if (!a.types.includes("Land") && b.types.includes("Land")) return -1;
+  if (a.types.includes("Land") && !b.types.includes("Land")) return 1;
+  if (!a.types.includes("Artifact") && b.types.includes("Artifact")) return -1;
+  if (a.types.includes("Artifact") && !b.types.includes("Artifact")) return 1;
   if ((a.colors.includes("W") && a.colors.length === 1) && (!b.colors.includes("W") || b.colors.length !== 1)) return -1;
   if ((b.colors.includes("W") && b.colors.length === 1) && (!a.colors.includes("W") || a.colors.length !== 1)) return 1;
   if ((a.colors.includes("U") && a.colors.length === 1) && (!b.colors.includes("U") || b.colors.length !== 1)) return -1;
@@ -65,4 +69,9 @@ function sortByRarity(a, b) {
   if (a.rarity === "Uncommon" && b.rarity !== "Uncommon") return -1;
   if (a.rarity !== "Uncommon" && b.rarity === "Uncommon") return 1;
   return sortByColor(a, b);
+}
+
+function sortArtifactLast(a, b) {
+  if (!a.types.includes("Artifact") && b.types.includes("Artifact")) return -1;
+  if (a.types.includes("Artifact") && !b.types.includes("Artifact")) return 1;
 }
