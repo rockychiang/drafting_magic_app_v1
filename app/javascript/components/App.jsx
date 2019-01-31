@@ -93,8 +93,15 @@ class App extends React.Component {
   }
 
   render () {
-    let toppool, deck, preview;
+    let toppool, deck, preview, panelOneId, panelTwoId;
     if (this.state.started) {
+      if (this.state.normalLayout) {
+        panelOneId = "panel-1-layout-1";
+        panelTwoId = "panel-2-layout-1";
+      } else {
+        panelOneId = "panel-1-layout-2";
+        panelTwoId = "panel-2-layout-2";
+      }
       let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
       toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished} />
       preview = <Preview preview={this.state.preview} />
@@ -119,12 +126,12 @@ class App extends React.Component {
 
     return (
       <div id="app">
-        <div id="top">
+        <div id={panelOneId}>
           <Title started={this.state.started} onNew={this.newDraft} onLayoutChange={this.layoutChange}/>
           {toppool}
         </div>
 
-        <div id="bottom">
+        <div id={panelTwoId}>
           {deck}
           {preview}
         </div>

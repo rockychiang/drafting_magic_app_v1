@@ -32,6 +32,37 @@ h1 {
   width: 100%;
 }
 
+#panel-1-layout-1 {
+  height: 100%;
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 238px);
+}
+
+#panel-2-layout-1 {
+  top: 40px;
+  right: 0;
+  height: 100%;
+  position: absolute;
+  width: 238px;
+}
+
+#panel-1-layout-2 {
+  height: calc(50% - 10px);
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#panel-2-layout-2 {
+  bottom: 10px;
+  height: calc(50% + 30px);
+  position: absolute;
+  width: 100%;
+}
+
 #buttons {
   display:inline-flex;
   list-style: none;
@@ -198,11 +229,6 @@ label.light {
 
 ol {
   margin: 0;
-}
-
-.tabs {
-  height: 100%;
-  width: calc(100% - 238px);
 }
 
 .tab-list {
