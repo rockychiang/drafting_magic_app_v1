@@ -7,11 +7,12 @@ class DeckList extends React.Component {
     let { cards, handleClick, handleHover } = this.props;
     let total = cards.length;
     let cardlist = sortBy("cmc", cards).map((card, i) => {
-
+      let className = "card list"
+      if (card.layout === "split") { className += " split" }
       return (
         <img
           key={i}
-          className="card list"
+          className={className}
           alt={card.name}
           src={card.imgurl}
           onClick={handleClick}
