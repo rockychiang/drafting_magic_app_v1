@@ -99,8 +99,8 @@ class App extends React.Component {
       if (this.state.normalLayout) {
         panelOneId = "panel-1-layout-1";
         panelTwoId = "panel-2-layout-1";
-        maindeck = <DeckList />
-        sideboard = <DeckList />
+        maindeck = <DeckList cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover}  />
+        sideboard = <DeckList cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
       } else {
         panelOneId = "panel-1-layout-2";
         panelTwoId = "panel-2-layout-2";

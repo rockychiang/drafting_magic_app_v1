@@ -112,7 +112,19 @@ img.card {
   margin-right: 30px;
 }
 
-#deck-pool {
+#deck-list {
+  bottom: 350px;
+  height: calc(100% - 380px);
+  position: absolute;
+  width: 100%;
+}
+
+#card-list {
+  border-left: 5px outset darkgrey;
+  height: calc(100% - 25px);
+}
+
+#deck-curve {
   background-color: white;
   height: calc(100% - 30px);
   position: absolute;

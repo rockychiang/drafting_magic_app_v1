@@ -24,7 +24,7 @@ class DeckCurve extends React.Component {
     })
 
     return (
-      <div id="deck-pool">
+      <div id="deck-curve">
         <div className="info-bar">
           <span className="info-bar-text">Creatures: {creatures}</span>
           <span className="info-bar-text">Others: {others}</span>
