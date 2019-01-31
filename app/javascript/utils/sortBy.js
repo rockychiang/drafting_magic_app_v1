@@ -50,6 +50,8 @@ function sortByColor(a, b) {
 }
 
 function sortByCmc(a, b) {
+  if (!a.types.includes("Land") && b.types.includes("Land")) return -1;
+  if (a.types.includes("Land") && !b.types.includes("Land")) return 1;
   if (a.cmc < b.cmc) return -1;
   if (a.cmc > b.cmc) return 1;
   return sortByName(a, b);
