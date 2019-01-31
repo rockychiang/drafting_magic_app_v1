@@ -43,13 +43,13 @@ h1 {
 #panel-2-layout-1 {
   top: 40px;
   right: 0;
-  height: 100%;
+  height: calc(100% - 40px);
   position: absolute;
   width: 238px;
 }
 
 #panel-1-layout-2 {
-  height: calc(50% - 10px);
+  height: calc(100% - 355px);
   overflow-x: scroll;
   position: absolute;
   top: 0;
@@ -57,8 +57,8 @@ h1 {
 }
 
 #panel-2-layout-2 {
-  bottom: 10px;
-  height: calc(50% + 30px);
+  bottom: 5px;
+  height: 380px;
   position: absolute;
   width: 100%;
 }
@@ -123,7 +123,7 @@ img.card {
 
 #deck-stacks {
   display: flex;
-  height: calc(100% - 21px);
+  height: inherit;
   margin-right: 5px;
   overflow: scroll;
   padding: 5px;
@@ -150,7 +150,7 @@ img.deck {
 
 #preview-box {
   background-color: white;
-  height: calc(100% - 30px);
+  height: fit-content;
   min-width: 238px;
   position: absolute;
   bottom: 0;
@@ -159,7 +159,7 @@ img.deck {
 
 #card-preview {
   border-left: 5px outset darkgrey;
-  height: calc(100% - 21px);
+  height: inherit;
   margin: auto;
   padding: 5px;
 }
