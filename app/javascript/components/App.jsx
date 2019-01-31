@@ -4,6 +4,7 @@ import Title from "./Title.jsx"
 import TopPool from "./TopPool.jsx"
 import Form from "./Form.jsx"
 import DeckCurve from "./DeckCurve.jsx"
+import DeckList from "./DeckList.jsx"
 import Preview from "./Preview.jsx"
 import Tabs from "./Tabs"
 import takeCard from "../utils/takeCard.js"
@@ -93,29 +94,33 @@ class App extends React.Component {
   }
 
   render () {
-    let toppool, deck, preview, panelOneId, panelTwoId;
+    let toppool, deck, preview, panelOneId, panelTwoId, maindeck, sideboard;
     if (this.state.started) {
       if (this.state.normalLayout) {
         panelOneId = "panel-1-layout-1";
         panelTwoId = "panel-2-layout-1";
+        maindeck = <DeckList />
+        sideboard = <DeckList />
       } else {
         panelOneId = "panel-1-layout-2";
         panelTwoId = "panel-2-layout-2";
+        maindeck = <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+        sideboard = <DeckCurve cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
       }
       let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
       toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished} />
       preview = <Preview preview={this.state.preview} />
 
       if (this.state.format === "sealed" || this.state.finished) {
-        deck = <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+        deck = maindeck
       } else {
         deck = (
           <Tabs>
             <div label="Main Deck">
-              <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
+              {maindeck}
             </div>
             <div label="Sideboard">
-              <DeckCurve cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+              {sideboard}
             </div>
           </Tabs>
         )
