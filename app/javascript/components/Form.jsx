@@ -7,10 +7,11 @@ class Form extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
+    const { block, format, getPacks } = this.props
     const data = {
       draft: {
-        block: this.props.block,
-        format: this.props.format
+        block: block,
+        format: format
       }
     }
 
@@ -18,17 +19,16 @@ class Form extends React.Component {
       type: "POST",
       url: "/api/v1/drafts.json",
       data: data,
-      success: (packs) => {
-        this.props.getPacks(packs)
-      }
+      success: (packs) => { getPacks(packs) }
     })
   }
 
   render () {
+    const { handleSubmit, props: { handleChange }} = this;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Block onChange={this.props.handleChange} />
-        <Format onChecked={this.props.handleChange} />
+      <form onSubmit={handleSubmit}>
+        <Block onChange={handleChange} />
+        <Format onChecked={handleChange} />
         <button type="submit">Start</button>
       </form>
     );
