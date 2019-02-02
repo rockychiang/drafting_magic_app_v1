@@ -67,7 +67,7 @@ class App extends React.Component {
   }
 
   handleTopPoolClick = (e) => {
-    let pack = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
+    let pack = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[7]
     this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft" && !this.state.finished) {
@@ -107,7 +107,7 @@ class App extends React.Component {
         maindeck = <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
         sideboard = <DeckCurve cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
       }
-      let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[0]
+      let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[7]
       toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished} />
       preview = <Preview preview={this.state.preview} />
 

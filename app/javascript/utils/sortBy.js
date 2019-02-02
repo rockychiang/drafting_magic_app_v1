@@ -70,8 +70,3 @@ function sortByRarity(a, b) {
   if (a.rarity !== "Uncommon" && b.rarity === "Uncommon") return 1;
   return sortByColor(a, b);
 }
-
-function sortArtifactLast(a, b) {
-  if (!a.types.includes("Artifact") && b.types.includes("Artifact")) return -1;
-  if (a.types.includes("Artifact") && !b.types.includes("Artifact")) return 1;
-}
