@@ -7,7 +7,7 @@ import DeckCurve from "./DeckCurve.jsx"
 import DeckList from "./DeckList.jsx"
 import Preview from "./Preview.jsx"
 import Tabs from "./Tabs"
-import takeCard from "../utils/takeCard.js"
+import takeCardBy from "../utils/takeCardBy.js"
 import botPick from "../utils/botPick.js"
 import rotatePacks from "../utils/rotatePacks.js"
 import CardBack from "images/MTG_Card_Back.jpg"
@@ -69,7 +69,7 @@ class App extends React.Component {
 
   handleTopPoolClick = (e) => {
     const { bots, finished, format, packs, pick, side } = this.state
-    let pack = (format === "sealed" || finished) ? side : packs[7]
+    const pack = (format === "sealed" || finished) ? side : packs[7]
     this.addCardToDeck(e.target.alt, pack);
 
     if (format === "draft" && !finished) {
@@ -93,13 +93,13 @@ class App extends React.Component {
   }
 
   addCardToDeck = (cardName, pack) => {
-    let card = takeCard(cardName, pack);
+    let card = takeCardBy("name", cardName, pack);
     let updatedDeck = this.state.deck.concat(card);
     this.setState({ deck: updatedDeck });
   }
 
   addCardToSide = (e) => {
-    let card = takeCard(e.target.alt, this.state.deck);
+    let card = takeCardBy("name", e.target.alt, this.state.deck);
     let updatedSide = this.state.side.concat(card);
     this.setState({ side: updatedSide });
   }
