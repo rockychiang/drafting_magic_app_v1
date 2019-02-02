@@ -49,7 +49,6 @@ class App extends React.Component {
 
   layoutChange = () => {
     this.setState({ normalLayout: !this.state.normalLayout })
-    console.log(this.state.normalLayout)
   }
 
   handleFormChange = (e) => {
@@ -64,11 +63,11 @@ class App extends React.Component {
   }
 
   handleCardHover = (e) => {
-    this.setState({ preview: e.target.src })
+    this.setState({ preview: e.target.src });
   }
 
   handleTopPoolClick = (e) => {
-    const { bots, finished, format, packs, pick, side } = this.state
+    const { bots, finished, format, packs, pick, side } = this.state;
     const pack = (format === "sealed" || finished) ? side : packs[7]
     this.addCardToDeck(e.target.alt, pack);
 
@@ -105,27 +104,30 @@ class App extends React.Component {
   }
 
   render () {
-    let toppool, deck, preview, panelOneId, panelTwoId, maindeck, sideboard;
-    if (this.state.started) {
-      if (this.state.normalLayout) {
+    const { addCardToSide, getPacks, handleCardHover, handleFormChange,
+      handleSideboardClick, handleTopPoolClick, layoutChange, newDraft,
+      state: { block, deck, finished, format, normalLayout, packs, pick, preview, side, started } } = this;
+    let toppool, deckPanel, previewPanel, panelOneId, panelTwoId, maindeck, sideboard;
+    if (started) {
+      if (normalLayout) {
         panelOneId = "panel-1-layout-1";
         panelTwoId = "panel-2-layout-1";
-        maindeck = <DeckList cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover}  />
-        sideboard = <DeckList cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+        maindeck = <DeckList cards={deck} handleClick={addCardToSide} handleHover={handleCardHover}  />
+        sideboard = <DeckList cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       } else {
         panelOneId = "panel-1-layout-2";
         panelTwoId = "panel-2-layout-2";
-        maindeck = <DeckCurve cards={this.state.deck} handleClick={this.addCardToSide} handleHover={this.handleCardHover} />
-        sideboard = <DeckCurve cards={this.state.side} handleClick={this.handleSideboardClick} handleHover={this.handleCardHover} />
+        maindeck = <DeckCurve cards={deck} handleClick={addCardToSide} handleHover={handleCardHover} />
+        sideboard = <DeckCurve cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       }
-      let cards = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[7]
-      toppool = <TopPool cards={cards} handleClick={this.handleTopPoolClick} handleHover={this.handleCardHover} format={this.state.format} pick={this.state.pick} finished={this.state.finished} />
-      preview = <Preview preview={this.state.preview} />
+      let cards = (format === "sealed" || finished) ? side : packs[7]
+      toppool = <TopPool cards={cards} handleClick={handleTopPoolClick} handleHover={handleCardHover} format={format} pick={pick} finished={finished} />
+      previewPanel = <Preview preview={preview} />
 
-      if (this.state.format === "sealed" || this.state.finished) {
-        deck = maindeck
+      if (format === "sealed" || finished) {
+        deckPanel = maindeck
       } else {
-        deck = (
+        deckPanel = (
           <Tabs>
             <div label="Main Deck">
               {maindeck}
@@ -137,19 +139,19 @@ class App extends React.Component {
         )
       }
     } else {
-      toppool = <Form getPacks={this.getPacks} handleChange={this.handleFormChange} block={this.state.block} format={this.state.format} />
+      toppool = <Form getPacks={getPacks} handleChange={handleFormChange} block={block} format={format} />
     }
 
     return (
       <div id="app">
         <div id={panelOneId}>
-          <Title started={this.state.started} onNew={this.newDraft} onLayoutChange={this.layoutChange}/>
+          <Title started={started} onNew={newDraft} onLayoutChange={layoutChange}/>
           {toppool}
         </div>
 
         <div id={panelTwoId}>
-          {deck}
-          {preview}
+          {deckPanel}
+          {previewPanel}
         </div>
       </div>
     );
