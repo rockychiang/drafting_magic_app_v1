@@ -68,22 +68,23 @@ class App extends React.Component {
   }
 
   handleTopPoolClick = (e) => {
-    let pack = (this.state.format === "sealed" || this.state.finished) ? this.state.side : this.state.packs[7]
+    const { bots, finished, format, packs, pick, side } = this.state
+    let pack = (format === "sealed" || finished) ? side : packs[7]
     this.addCardToDeck(e.target.alt, pack);
 
-    if (this.state.format === "draft" && !this.state.finished) {
+    if (format === "draft" && !finished) {
       let updatedBots = []
-      this.state.bots.map((bot, i) => {
-        let card = botPick(this.state.packs[i], this.state.pick)
-        let updatedBot = this.state.bots[i].concat(card);
+      bots.map((bot, i) => {
+        let card = botPick(packs[i], pick)
+        let updatedBot = bots[i].concat(card);
         updatedBots.push(updatedBot)
       })
-      rotatePacks(this.state.packs, this.state.pick);
+      rotatePacks(packs, pick);
       this.setState({
         bots: updatedBots,
-        pick: this.state.pick + 1
+        pick: pick + 1
       });
-      this.state.pick >= 45 && this.setState({ finished: true })
+      pick >= 45 && this.setState({ finished: true })
     }
   }
 
