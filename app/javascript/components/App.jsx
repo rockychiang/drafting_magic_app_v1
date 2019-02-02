@@ -72,9 +72,17 @@ class App extends React.Component {
     this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft" && !this.state.finished) {
-      botPick(this.state.bots, this.state.packs, this.state.pick)
+      let updatedBots = []
+      this.state.bots.map((bot, i) => {
+        let card = botPick(this.state.packs[i], this.state.pick)
+        let updatedBot = this.state.bots[i].concat(card);
+        updatedBots.push(updatedBot)
+      })
       rotatePacks(this.state.packs, this.state.pick);
-      this.setState({ pick: this.state.pick + 1 });
+      this.setState({
+        bots: updatedBots,
+        pick: this.state.pick + 1
+      });
       this.state.pick >= 45 && this.setState({ finished: true })
     }
   }
