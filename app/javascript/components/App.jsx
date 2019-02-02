@@ -8,6 +8,7 @@ import DeckList from "./DeckList.jsx"
 import Preview from "./Preview.jsx"
 import Tabs from "./Tabs"
 import takeCard from "../utils/takeCard.js"
+import botPick from "../utils/botPick.js"
 import rotatePacks from "../utils/rotatePacks.js"
 import CardBack from "images/MTG_Card_Back.jpg"
 
@@ -32,7 +33,7 @@ class App extends React.Component {
       pick: 1
     }
 
-    this.state = Object.assign(this.initialState, this.initialDraftState)
+    this.state = Object.assign({}, this.initialState, this.initialDraftState)
   }
 
   startDraft = () => {
@@ -71,6 +72,7 @@ class App extends React.Component {
     this.addCardToDeck(e.target.alt, pack);
 
     if (this.state.format === "draft" && !this.state.finished) {
+      botPick(this.state.bots, this.state.packs, this.state.pick)
       rotatePacks(this.state.packs, this.state.pick);
       this.setState({ pick: this.state.pick + 1 });
       this.state.pick >= 45 && this.setState({ finished: true })
