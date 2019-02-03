@@ -51,10 +51,11 @@ class App extends React.Component {
     this.setState({ normalLayout: !this.state.normalLayout })
   }
 
-  getPacks = (packs) => {
-    this.setState(Object.assign({ packs: packs }, this.initialDraftState));
-    this.state.format === "sealed" && this.setState({ side: this.state.packs });
-    this.startDraft();
+  getPacks = (newPacks) => {
+    const { initialDraftState, setState, startDraft, state: { format, packs }} = this;
+    setState(Object.assign({ packs: newPacks }, initialDraftState));
+    format === "sealed" && setState({ side: packs });
+    startDraft();
   }
 
   handleCardHover = (e) => {
@@ -119,11 +120,12 @@ class App extends React.Component {
         sideboard = <DeckCurve cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       }
       let cards = (format === "sealed" || finished) ? side : packs[7]
-      poolPanel = <Pool cards={cards} handleClick={handlePoolClick} handleHover={handleCardHover} format={format} pick={pick} finished={finished} />
+      poolPanel = <Pool cards={cards} handleClick={handlePoolClick} handleHover={handleCardHover}
+        format={format} pick={pick} finished={finished} />
       previewPanel = <Preview preview={preview} />
 
       if (format === "sealed" || finished) {
-        deckPanel = maindeck
+        deckPanel = maindeck;
       } else {
         deckPanel = (
           <Tabs>
