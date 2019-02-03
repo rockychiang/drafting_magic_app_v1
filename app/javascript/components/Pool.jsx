@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import SortBy from "./SortBy.jsx"
 import sortBy from "../utils/sortBy.js"
 
-class TopPool extends React.Component {
+class Pool extends React.Component {
   constructor() {
     super()
 
@@ -50,16 +50,16 @@ class TopPool extends React.Component {
     })
 
     if (format === "draft" && !finished) {
-      let packNo = Math.ceil(pick/15);
-      let pickNo = pick - (packNo-1)*15;
-        menu = <span className="menu">Pack: {packNo} / Pick: {pickNo}</span>
+      let packNo = Math.ceil( pick / 15 );
+      let pickNo = pick - ( packNo - 1 ) * 15;
+      menu = <span className="menu">Pack: {packNo} / Pick: {pickNo}</span>
     } else {
-        menu = <label className="menu">Sort By:<SortBy onChange={handleChange} /></label>
+      menu = <label className="menu">Sort By:<SortBy onChange={handleChange} /></label>
     }
 
     return (
-      <div id="top-pool">
-        <div id="top-pool-menu">
+      <div id="pool">
+        <div id="pool-menu">
           {menu}
         </div>
         {pool}
@@ -68,4 +68,4 @@ class TopPool extends React.Component {
   }
 }
 
-export default TopPool
+export default Pool

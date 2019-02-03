@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Title from "./Title.jsx"
-import TopPool from "./TopPool.jsx"
+import Pool from "./Pool.jsx"
 import Form from "./Form.jsx"
 import DeckCurve from "./DeckCurve.jsx"
 import DeckList from "./DeckList.jsx"
@@ -66,7 +66,7 @@ class App extends React.Component {
     this.setState({ preview: e.target.src });
   }
 
-  handleTopPoolClick = (e) => {
+  handlePoolClick = (e) => {
     const { bots, finished, format, packs, pick, side } = this.state;
     const pack = (format === "sealed" || finished) ? side : packs[7]
     this.addCardToDeck(e.target.alt, pack);
@@ -105,9 +105,9 @@ class App extends React.Component {
 
   render () {
     const { addCardToSide, getPacks, handleCardHover, handleFormChange,
-      handleSideboardClick, handleTopPoolClick, layoutChange, newDraft,
+      handleSideboardClick, handlePoolClick, layoutChange, newDraft,
       state: { block, deck, finished, format, normalLayout, packs, pick, preview, side, started } } = this;
-    let toppool, deckPanel, previewPanel, panelOneId, panelTwoId, maindeck, sideboard;
+    let poolPanel, deckPanel, previewPanel, panelOneId, panelTwoId, maindeck, sideboard;
     if (started) {
       if (normalLayout) {
         panelOneId = "panel-1-layout-1";
@@ -121,7 +121,7 @@ class App extends React.Component {
         sideboard = <DeckCurve cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       }
       let cards = (format === "sealed" || finished) ? side : packs[7]
-      toppool = <TopPool cards={cards} handleClick={handleTopPoolClick} handleHover={handleCardHover} format={format} pick={pick} finished={finished} />
+      poolPanel = <Pool cards={cards} handleClick={handlePoolClick} handleHover={handleCardHover} format={format} pick={pick} finished={finished} />
       previewPanel = <Preview preview={preview} />
 
       if (format === "sealed" || finished) {
@@ -139,14 +139,14 @@ class App extends React.Component {
         )
       }
     } else {
-      toppool = <Form getPacks={getPacks} handleChange={handleFormChange} block={block} format={format} />
+      poolPanel = <Form getPacks={getPacks} handleChange={handleFormChange} block={block} format={format} />
     }
 
     return (
       <div id="app">
         <div id={panelOneId}>
           <Title started={started} onNew={newDraft} onLayoutChange={layoutChange}/>
-          {toppool}
+          {poolPanel}
         </div>
 
         <div id={panelTwoId}>
