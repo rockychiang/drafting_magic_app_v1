@@ -51,11 +51,6 @@ class App extends React.Component {
     this.setState({ normalLayout: !this.state.normalLayout })
   }
 
-  handleFormChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  }
-
   getPacks = (packs) => {
     this.setState(Object.assign({ packs: packs }, this.initialDraftState));
     this.state.format === "sealed" && this.setState({ side: this.state.packs });
@@ -66,17 +61,32 @@ class App extends React.Component {
     this.setState({ preview: e.target.src });
   }
 
+  handleFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  addCardTo = (target, cardName, pack) => {
+    let card = takeCardBy("name", cardName, pack);
+    let updatedTarget = this.state[target].concat(card);
+    this.setState({ [target]: updatedTarget });
+  }
+
+  handleMaindeckClick = (e) => {
+    this.addCardTo("side", e.target.alt, this.state.deck);
+  }
+
   handlePoolClick = (e) => {
     const { bots, finished, format, packs, pick, side } = this.state;
     const pack = (format === "sealed" || finished) ? side : packs[7]
-    this.addCardToDeck(e.target.alt, pack);
+    this.addCardTo("deck", e.target.alt, pack);
 
     if (format === "draft" && !finished) {
-      let updatedBots = []
+      let updatedBots = [];
       bots.map((bot, i) => {
-        let card = botPick(packs[i], pick)
+        let card = botPick(packs[i], pick);
         let updatedBot = bots[i].concat(card);
-        updatedBots.push(updatedBot)
+        updatedBots.push(updatedBot);
       })
       rotatePacks(packs, pick);
       this.setState({
@@ -88,23 +98,11 @@ class App extends React.Component {
   }
 
   handleSideboardClick = (e) => {
-    this.addCardToDeck(e.target.alt, this.state.side);
-  }
-
-  addCardToDeck = (cardName, pack) => {
-    let card = takeCardBy("name", cardName, pack);
-    let updatedDeck = this.state.deck.concat(card);
-    this.setState({ deck: updatedDeck });
-  }
-
-  addCardToSide = (e) => {
-    let card = takeCardBy("name", e.target.alt, this.state.deck);
-    let updatedSide = this.state.side.concat(card);
-    this.setState({ side: updatedSide });
+    this.addCardTo("deck", e.target.alt, this.state.side);
   }
 
   render () {
-    const { addCardToSide, getPacks, handleCardHover, handleFormChange,
+    const { getPacks, handleCardHover, handleFormChange, handleMaindeckClick,
       handleSideboardClick, handlePoolClick, layoutChange, newDraft,
       state: { block, deck, finished, format, normalLayout, packs, pick, preview, side, started } } = this;
     let poolPanel, deckPanel, previewPanel, panelOneId, panelTwoId, maindeck, sideboard;
@@ -112,12 +110,12 @@ class App extends React.Component {
       if (normalLayout) {
         panelOneId = "panel-1-layout-1";
         panelTwoId = "panel-2-layout-1";
-        maindeck = <DeckList cards={deck} handleClick={addCardToSide} handleHover={handleCardHover}  />
+        maindeck = <DeckList cards={deck} handleClick={handleMaindeckClick} handleHover={handleCardHover}  />
         sideboard = <DeckList cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       } else {
         panelOneId = "panel-1-layout-2";
         panelTwoId = "panel-2-layout-2";
-        maindeck = <DeckCurve cards={deck} handleClick={addCardToSide} handleHover={handleCardHover} />
+        maindeck = <DeckCurve cards={deck} handleClick={handleMaindeckClick} handleHover={handleCardHover} />
         sideboard = <DeckCurve cards={side} handleClick={handleSideboardClick} handleHover={handleCardHover} />
       }
       let cards = (format === "sealed" || finished) ? side : packs[7]
