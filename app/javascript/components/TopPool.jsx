@@ -8,31 +8,34 @@ class TopPool extends React.Component {
     super()
 
     this.state = {
-      sortBy: "color",
+      sortCategory: "color",
       cards: []
     }
   }
 
   componentDidMount() {
-    let cards = this.props.format === "draft" ? this.props.cards : sortBy("color", this.props.cards)
-    this.setState({ cards: cards })
+    const { cards, format } = this.props;
+    let poolCards = format === "draft" ? cards : sortBy("color", cards)
+    this.setState({ cards: poolCards })
   }
 
   componentWillReceiveProps(nextProps) {
-    let cards = (this.props.format === "draft" && !this.props.finished) ? nextProps.cards : sortBy(this.state.sortBy, nextProps.cards)
+    const { props: { finished, format }, state: { sortCategory } } = this;
+    let cards = (format === "draft" && !finished) ? nextProps.cards : sortBy(sortCategory, nextProps.cards)
     this.setState({ cards: cards })
   }
 
-  onChange = (e) => {
+  handleChange = (e) => {
     this.setState({
-      sortBy: e.target.value,
+      sortCategory: e.target.value,
       cards: sortBy(e.target.value, this.state.cards)
     })
   }
 
   render () {
+    const { handleChange, props: { finished, format, handleClick, handleHover, pick }, state: { cards } } = this;
     let menu;
-    let pool = this.state.cards.map((card, i) => {
+    let pool = cards.map((card, i) => {
       return (
         <img
           key={i}
@@ -40,18 +43,18 @@ class TopPool extends React.Component {
           alt={card.name}
           title={card.name}
           src={card.imgurl}
-          onClick={this.props.handleClick}
-          onMouseOver={this.props.handleHover}
+          onClick={handleClick}
+          onMouseOver={handleHover}
         />
       )
     })
 
-    if (this.props.format === "draft" && !this.props.finished) {
-      let pack = Math.ceil(this.props.pick/15);
-      let pick = this.props.pick - (pack-1)*15;
-          menu = <span className="menu">Pack: {pack} / Pick: {pick}</span>
+    if (format === "draft" && !finished) {
+      let packNo = Math.ceil(pick/15);
+      let pickNo = pick - (packNo-1)*15;
+        menu = <span className="menu">Pack: {packNo} / Pick: {pickNo}</span>
     } else {
-          menu = <label className="menu">Sort By:<SortBy onChange={this.onChange} /></label>
+        menu = <label className="menu">Sort By:<SortBy onChange={handleChange} /></label>
     }
 
     return (
