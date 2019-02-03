@@ -52,9 +52,9 @@ class App extends React.Component {
   }
 
   getPacks = (newPacks) => {
-    const { initialDraftState, setState, startDraft, state: { format, packs }} = this;
-    setState(Object.assign({ packs: newPacks }, initialDraftState));
-    format === "sealed" && setState({ side: packs });
+    const { initialDraftState, startDraft, state: { format, packs }} = this;
+    this.setState(Object.assign({ packs: newPacks }, initialDraftState));
+    format === "sealed" && this.setState({ side: packs });
     startDraft();
   }
 
