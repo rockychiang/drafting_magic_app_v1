@@ -1,4 +1,4 @@
-export default function adjustRatingForGRN(bot, pack , block) {
+export default function adjustRatingForRNA(bot, pack , block) {
   const pickNo = bot.length + 1;
   if (pickNo === 2) {
     const fpColor = bot[0].colors
@@ -7,9 +7,12 @@ export default function adjustRatingForGRN(bot, pack , block) {
       pack.filter(card => card.colors.includes(fpColor[0])).map(card => card.rating = card.rating + 0.2)
       console.log(pack)
     } else {
-      pack.filter(card => card.colors == fpColor || card.colors == [fpColor[0]] || card.colors == [fpColor[1]])
-        .map(card => card.rating = card.rating + 0.2)
-      console.log(pack)
+      let filtered = pack.filter(card => {
+        return (( card.colors.length == 1 && card.colors.includes(fpColor[0]) ) ||
+        ( card.colors.length == 1 && card.colors.includes(fpColor[1]) ) ||
+        ( card.colors.includes(fpColor[0]) && card.colors.includes(fpColor[1]) ))
+      })
+      filtered.map(card => card.rating = card.rating + 0.2)
     }
   } else if (pickNo > 2 && pickNo < 5) {
 
