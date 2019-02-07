@@ -1,21 +1,27 @@
 import takeCardBy from "./takeCardBy.js"
+import adjustRatingForGRN from "./RatingAdjusters/grn.js"
+import adjustRatingForRNA from "./RatingAdjusters/rna.js"
 
-export default function botPick(bot, pack) {
+export default function botPick(bot, pack, block) {
   let packCopy = pack.slice(0);
   adjustRating(bot, packCopy);
   let maxRating = Math.max.apply(Math, packCopy.map(card => card.rating));
   return takeCardBy("rating", maxRating, pack);
 }
 
-function adjustRating(bot, pack) {
+function adjustRating(bot, pack, block) {
   const pickNo = bot.length + 1;
-  if (pickNo < 3) {
-    console.log(typeof pack[0].rating)
+  if (pickNo === 1) {
     pack.filter(card => card.colors.length == 1).map(card => card.rating = card.rating + 0.1)
-    console.log(pack)
-  } else if (pickNo > 3 && pickNo < 7) {
-
   } else {
-
+    switch (block) {
+      case "grn":
+        adjustRatingForGRN(bot, pack, block);
+        break;
+      case "rna":
+        adjustRatingForRNA(bot, pack, block);
+        break;
+      default:
+    }
   }
 }

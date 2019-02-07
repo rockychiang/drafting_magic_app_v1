@@ -78,14 +78,14 @@ class App extends React.Component {
   }
 
   handlePoolClick = (e) => {
-    const { bots, finished, format, packs, pick, side } = this.state;
+    const { block, bots, finished, format, packs, pick, side } = this.state;
     const pack = (format === "sealed" || finished) ? side : packs[7]
     this.addCardTo("deck", e.target.alt, pack);
 
     if (format === "draft" && !finished) {
       let updatedBots = [];
       bots.map((bot, i) => {
-        let card = botPick(bot, packs[i]);
+        let card = botPick(bot, packs[i], block);
         let updatedBot = bots[i].concat(card);
         updatedBots.push(updatedBot);
       })
