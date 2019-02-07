@@ -16,7 +16,7 @@ class DeckCurve extends React.Component {
     let lands = land.length
     let creatures = cards.filter(card => card.types.includes("Creature")).length
     let total = cards.length
-    let others = total - lands - creatures
+    let spells = total - lands - creatures
     let deckstacks = stacks.map((stack, i) => {
       if (stack.length > 0) {
         return <Stack key={i} cards={stack} handleClick={handleClick} handleHover={handleHover}/>
@@ -27,7 +27,7 @@ class DeckCurve extends React.Component {
       <div id="deck-curve">
         <div className="info-bar">
           <span className="info-bar-text">Creatures: {creatures}</span>
-          <span className="info-bar-text">Others: {others}</span>
+          <span className="info-bar-text">Spells: {spells}</span>
           <span className="info-bar-text">Lands: {lands}</span>
           <span className="info-bar-text">Total: {total}</span>
         </div>

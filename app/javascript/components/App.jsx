@@ -85,7 +85,7 @@ class App extends React.Component {
     if (format === "draft" && !finished) {
       let updatedBots = [];
       bots.map((bot, i) => {
-        let card = botPick(packs[i], pick);
+        let card = botPick(bot, packs[i]);
         let updatedBot = bots[i].concat(card);
         updatedBots.push(updatedBot);
       })
