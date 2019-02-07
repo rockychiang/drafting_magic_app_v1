@@ -1,4 +1,5 @@
 import adjustRatingBy from "./adjustRatingBy.js"
+import getColors from "./getColors.js"
 
 export default function adjustRatingForRNA(bot, pack, block) {
   const pickNo = bot.length + 1;
@@ -6,13 +7,8 @@ export default function adjustRatingForRNA(bot, pack, block) {
     const fpColor = bot[0].colors
     adjustRatingBy(0.2, fpColor, pack);
   } else if (pickNo > 2 && pickNo < 5) {
-    const colors = bot.map(card => card.colors).flat();
-    const uniqColors = [...new Set(colors)];
-    // let filtered = pack.filter(card => {
-    //   return (
-    //
-    //   )
-    // })
+    const colors = getColors(2, bot)
+
   } else {
 
   }

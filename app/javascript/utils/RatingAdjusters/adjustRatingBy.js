@@ -20,7 +20,7 @@ export default function adjustRatingBy(adjustment, color, pack) {
       break;
 
     case 3:
-      filtered = pack.filter(card. => {
+      filtered = pack.filter(card => {
         return (
           (card.colors.length == 1 && card.colors.includes(color[0])) ||
           (card.colors.length == 1 && card.colors.includes(color[1])) ||

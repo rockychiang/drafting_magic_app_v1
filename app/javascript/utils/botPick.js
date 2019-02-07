@@ -7,7 +7,7 @@ export default function botPick(bot, pack, block) {
   adjustRating(bot, packCopy, block);
   const maxRating = Math.max.apply(Math, packCopy.map(card => card.rating));
   const card = packCopy.filter(card => card.rating == maxRating)[0];
-  console.log(pack, card)
+  console.log(bot, pack, card)
   return takeCardBy("name", card.name, pack);
 }
 
