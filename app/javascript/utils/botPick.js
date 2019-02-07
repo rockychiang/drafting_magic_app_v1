@@ -3,8 +3,8 @@ import adjustRatingForGRN from "./RatingAdjusters/grn.js"
 import adjustRatingForRNA from "./RatingAdjusters/rna.js"
 
 export default function botPick(bot, pack, block) {
-  let packCopy = pack.slice(0);
-  adjustRating(bot, packCopy);
+  let packCopy = JSON.parse(JSON.stringify(pack));
+  adjustRating(bot, packCopy, block);
   let maxRating = Math.max.apply(Math, packCopy.map(card => card.rating));
   return takeCardBy("rating", maxRating, pack);
 }
