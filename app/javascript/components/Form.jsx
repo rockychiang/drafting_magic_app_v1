@@ -19,7 +19,11 @@ class Form extends React.Component {
       type: "POST",
       url: "/api/v1/drafts.json",
       data: data,
-      success: (packs) => { getPacks(packs) }
+      success: (packs) => {
+        let updatedPacks = packs.slice(0);
+        updatedPacks.map(pack => pack.map(card => card.rating = parseFloat(card.rating)))
+        getPacks(updatedPacks)
+      }
     })
   }
 
