@@ -7,7 +7,7 @@ export default function adjustRatingForRNA(bot, pack, block) {
     const fpColor = bot[0].colors
     adjustRatingBy(0.2, fpColor, pack);
   } else if (pickNo > 2 && pickNo < 5) {
-    const colors = getColors(2, bot)
+    const colors = getColors(2, bot);
 
   } else {
 
