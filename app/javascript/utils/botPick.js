@@ -5,8 +5,10 @@ import adjustRatingForRNA from "./RatingAdjusters/rna.js"
 export default function botPick(bot, pack, block) {
   let packCopy = JSON.parse(JSON.stringify(pack));
   adjustRating(bot, packCopy, block);
-  let maxRating = Math.max.apply(Math, packCopy.map(card => card.rating));
-  return takeCardBy("rating", maxRating, pack);
+  const maxRating = Math.max.apply(Math, packCopy.map(card => card.rating));
+  const card = packCopy.filter(card => card.rating == maxRating)[0];
+  console.log(pack, card)
+  return takeCardBy("name", card.name, pack);
 }
 
 function adjustRating(bot, pack, block) {

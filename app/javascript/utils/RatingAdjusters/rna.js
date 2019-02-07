@@ -5,12 +5,13 @@ export default function adjustRatingForRNA(bot, pack , block) {
     console.log(bot[0])
     if (fpColor.length === 1) {
       pack.filter(card => card.colors.includes(fpColor[0])).map(card => card.rating = card.rating + 0.2)
-      console.log(pack)
     } else {
       let filtered = pack.filter(card => {
-        return (( card.colors.length == 1 && card.colors.includes(fpColor[0]) ) ||
-        ( card.colors.length == 1 && card.colors.includes(fpColor[1]) ) ||
-        ( card.colors.includes(fpColor[0]) && card.colors.includes(fpColor[1]) ))
+        return (
+          ( card.colors.length == 1 && card.colors.includes(fpColor[0]) ) ||
+          ( card.colors.length == 1 && card.colors.includes(fpColor[1]) ) ||
+          ( card.colors.includes(fpColor[0]) && card.colors.includes(fpColor[1]) )
+        )
       })
       filtered.map(card => card.rating = card.rating + 0.2)
     }
