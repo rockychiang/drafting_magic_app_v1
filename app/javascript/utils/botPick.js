@@ -1,4 +1,5 @@
 import takeCardBy from "./takeCardBy.js"
+import filterByColor from "./RatingAdjusters/filterByColor.js"
 import adjustRatingForGRN from "./RatingAdjusters/grn.js"
 import adjustRatingForRNA from "./RatingAdjusters/rna.js"
 
@@ -28,12 +29,26 @@ function adjustRating(bot, pack, block, pickNo) {
 }
 
 function pickBestCard(pack, bot, pickNo) {
-  pack.sort(card1, card2 => card1.rating - card2.rating);
-  if (pickNo === 1) {
-    return pack[0]
-  } else if (pickNo === 2) {
-    if (bot[0].rating >= 4) {
+  let bestCard;
+  pack.sort((card1, card2) => card2.rating - card1.rating);
 
+  if (pickNo === 1) {
+    bestCard = pack[0];
+  } else if (pickNo === 2) {
+    let filteredPack = filterByColor(bot[0].colors, pack).filter(card => card.rating >= 3)
+
+    if (bot[0].rating >= 4) {
+      bestCard = filteredPack.length > 0 ? filteredPack[0] : pack[0]
+    } else {
+      if (pack[0].rating >= 4) {
+        bestCard = pack[0];
+      } else {
+        bestCard = filteredPack.length > 0 ? filteredPack[0] : pack[0]
+      }
     }
+  } else {
+    bestCard = pack[0];
   }
+
+  return bestCard;
 }

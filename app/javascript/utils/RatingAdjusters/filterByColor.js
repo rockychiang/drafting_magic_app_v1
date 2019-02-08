@@ -1,6 +1,6 @@
-export default function filterByColor(colors, pack) {
+export default function filterByColor(color, pack) {
   let filteredPack
-  switch (colors.length) {
+  switch (color.length) {
     case 1:
       filteredPack = pack.filter(card => {
         return (
